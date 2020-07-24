@@ -20,8 +20,14 @@ class App extends React.Component {
   render() {
     return (
     <div className="App">
-      <Welcome />
       I'm the Best Fucking App Ever 
+      <Switch>
+        <Route exactpath='/' render={() => <div>Home</div>} />
+        <Route path='/navbar' render={() => <div>Navbar</div>} />
+        <Route path='/activities' render={() => <div>Activities</div>} />
+        <Route path='/activities/:id' render={() => <div>An Activity</div>} />  
+      </Switch>
+      
     </div>
     );
   }
