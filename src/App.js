@@ -20,11 +20,8 @@ class App extends React.Component {
   render() {
     return (
     <div className="App">
-<<<<<<< HEAD
       <Welcome />
-=======
       I'm the Best Fucking App Ever 
->>>>>>> ca179cf50addbab9b60e55ff2e017c1ef8178e70
     </div>
     );
   }
