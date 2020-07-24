@@ -2,7 +2,8 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Route, Switch} from 'react-router-dom';
 import './App.css';
-import Welcome from './components/Welcome';
+import Navbar from './components/Navbar';
+
 
 
 const API = 'http://localhost:3001/activities'
@@ -20,12 +21,12 @@ class App extends React.Component {
   render() {
     return (
     <div className="App">
-      I'm the Best Fucking App Ever 
+      <Navbar />
       <Switch>
-        <Route exactpath='/' render={() => <div>Home</div>} />
-        <Route path='/navbar' render={() => <div>Navbar</div>} />
-        <Route path='/activities' render={() => <div>Activities</div>} />
         <Route path='/activities/:id' render={() => <div>An Activity</div>} />  
+        <Route path='/activities' render={() => <div>Activities</div>} />
+        <Route path='/welcome' render={() => <div>Welcome</div>} />
+        <Route exact path='/' render={() => <div>Home</div>} />
       </Switch>
       
     </div>
