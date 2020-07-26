@@ -7,7 +7,7 @@ export default class ActivitiesContainer extends Component {
         console.log({props: this.props})
         return (
             <div>
-                <h1>Activities</h1>
+                <h1>Activities Donkey</h1>
                 <Link to="/activities/breathe">Breathe</Link>
             </div>
         )
