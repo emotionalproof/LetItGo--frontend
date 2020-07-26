@@ -1,10 +1,22 @@
 import React from 'react'
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import { Login } from './Auth';
 
-const Welcome = () => {
+
+
+const Welcome = (props) => {
+    console.log(props)
     return (
-        <div>
-            <h1>Welcome</h1>
-        </div>
+
+        <Container fluid>
+            <Row>
+                <Col> 
+                    <img onClick={() => props.history.push('/login')} className="welcome-img" src='Untitled_Artwork.png' alt="Welcome"/>
+                </Col>
+            </Row>
+        </Container>
     )
 }
 
