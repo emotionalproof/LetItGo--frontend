@@ -1,32 +1,46 @@
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css'
 import { Route, Switch} from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css';
-import Navbar from './components/Navbar';
+import ActivitiesContainer from './containers/ActivitiesContainer';
+import Welcome from './pages/Welcome';
+import Auth from './pages/Auth';
+import Home from './pages/Home';
 
 
 
-const API = 'http://localhost:3001/activities'
+const API = 'http://localhost:3002/api/v1/activities'
 
 
 class App extends React.Component {
   state = {
-    activities: []
+    activities: [],
+    loggedIn: false
   }
 
-  componentDidMount(API) {
+  componentDidMount() {
     fetch(API).then(resp => resp.json()).then(activities => this.setState({activities}))
+  }
+  
+
+  handleLogin = () => {
+    this.setState(prevState => {
+      return {
+        loggedIn: !prevState.loggedIn
+      }
+    })
   }
 
   render() {
     return (
     <div className="App">
-      <Navbar />
+      
       <Switch>
         <Route path='/activities/:id' render={() => <div>An Activity</div>} />  
-        <Route path='/activities' render={() => <div>Activities</div>} />
-        <Route path='/welcome' render={() => <div>Welcome</div>} />
-        <Route exact path='/' render={() => <div>Home</div>} />
+        <Route path='/activities' render={(routerProps) => <ActivitiesContainer {...routerProps}/> }/>
+        <Route path='/welcome' render={(routerProps) =>  <Welcome loggedIn={this.state.loggedIn} {...routerProps}/>} />
+        <Route path='/login' render={(routerProps) => <Auth loggedIn={this.state.loggedIn} handleLogin={this.handleLogin} {...routerProps}/>} />
+        <Route exact path='/' render={(routerProps) => <Home loggedIn={this.state.loggedIn} activities={this.state.activities} {...routerProps}/>  } />
       </Switch>
       
     </div>
