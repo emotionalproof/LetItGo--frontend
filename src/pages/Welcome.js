@@ -10,10 +10,10 @@ const Welcome = (props) => {
     console.log(props)
     return (
 
-        <Container fluid>
+        <Container fluid className="welcome-container">
             <Row>
                 <Col> 
-                    <img onClick={() => props.history.push('/login')} className="welcome-img" src='Untitled_Artwork.png' alt="Welcome"/>
+                    <img onClick={() => props.history.push('/login')} className="welcome-img" src='welcome.png' alt="Welcome"/>
                 </Col>
             </Row>
         </Container>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Navbar from '../components/Navbar';
+import HomeNavbar from '../components/HomeNavbar';
 import { Route, Switch} from 'react-router-dom';
 
 
@@ -12,7 +12,7 @@ export default class Home extends Component {
         return (
             
             <div>
-            <Navbar />
+            <HomeNavbar />
             {/* {!this.props.loggedIn && this.props.history.push('/welcome')} */}
                 
 

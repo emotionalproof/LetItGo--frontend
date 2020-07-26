@@ -8,16 +8,11 @@ import RegisterForm from '../components/RegisterForm';
 const Auth = props => {
     console.log(props)
     return (
-        <Container>
-            <Row>
-                <Col>
-                    <h1>Welcome</h1>
-                </Col>
-            </Row>
-            <Row>
-                <Col xs={5}><LoginForm handleLogin={props.handleLogin} {...props.history}/></Col>
+        <Container className="auth-container">
+            <Row className="form-row">
+                <Col xs={5} className="formContainer"><LoginForm handleLogin={props.handleLogin} {...props.history}/></Col>
                 <Col></Col>
-                <Col xs={5}><RegisterForm handleLogin={props.handleLogin} {...props.history}/></Col>
+                <Col xs={5} className="formContainer"><RegisterForm handleLogin={props.handleLogin} {...props.history}/></Col>
             </Row>
         </Container>
     )

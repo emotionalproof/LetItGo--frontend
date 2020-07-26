@@ -63,30 +63,26 @@ class RegisterForm extends Component {
     render() {
         console.log(this.state)
         return (
-            <Form onSubmit={this.handleSubmit}>
-            <Form.Group controlId="formBasicFirstName">
-                <Form.Label>First Name</Form.Label>
-                <Form.Control onChange={this.handleChange} name="firstName" value={this.state.firstName} type="text" placeholder="Enter First Name" />
-            </Form.Group>
-            <Form.Group controlId="formBasicLastName">
-                <Form.Label>Last Name</Form.Label>
-                <Form.Control onChange={this.handleChange} name="lastName" value={this.state.lastName} type="text"  placeholder="Enter Last Name" />
-            </Form.Group>
-            <Form.Group controlId="formBasicUsername">
-                <Form.Label>Username</Form.Label>
-                <Form.Control onChange={this.handleChange} name="username" value={this.state.username} type="text" placeholder="Select Username" />
-            </Form.Group>
-            <Form.Group controlId="formBasicPassword">
-                <Form.Label>Password</Form.Label>
-                <Form.Control onChange={this.handleChange} name="password" value={this.state.password} type="password" placeholder="Password" />
-            </Form.Group>
-            <Form.Group controlId="formBasicPasswordConfirmation">
-                <Form.Label>Confirm Password</Form.Label>
-                <Form.Control onChange={this.handleChange} name="passwordConfirmation" value={this.state.passwordConfirmation} type="password" placeholder="Password" />
-            </Form.Group>
-            <Button variant="primary" type="submit">
-                Submit
-            </Button>
+            <Form className="auth-form" onSubmit={this.handleSubmit}>
+                <h1 className="form-title">Register</h1>
+                <Form.Group controlId="formBasicFirstName">
+                    <Form.Control className="form-input" onChange={this.handleChange} name="firstName" value={this.state.firstName} type="text" placeholder="Enter First Name" />
+                </Form.Group>
+                <Form.Group controlId="formBasicLastName">
+                    <Form.Control className="form-input" onChange={this.handleChange} name="lastName" value={this.state.lastName} type="text"  placeholder="Enter Last Name" />
+                </Form.Group>
+                <Form.Group controlId="formBasicUsername">
+                    <Form.Control className="form-input" onChange={this.handleChange} name="username" value={this.state.username} type="text" placeholder="Select Username" />
+                </Form.Group>
+                <Form.Group controlId="formBasicPassword">
+                    <Form.Control className="form-input" onChange={this.handleChange} name="password" value={this.state.password} type="password" placeholder="Enter Password" />
+                </Form.Group>
+                <Form.Group controlId="formBasicPasswordConfirmation">
+                    <Form.Control className="form-input" onChange={this.handleChange} name="passwordConfirmation" value={this.state.passwordConfirmation} type="password" placeholder="Confirm Password" />
+                </Form.Group>
+                <Button variant="primary" type="submit" className='auth-submit-button'>
+                    Submit
+                </Button>
             </Form>
         )
     }

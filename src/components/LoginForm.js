@@ -41,16 +41,15 @@ class LoginForm extends Component {
     render() {
     //   console.log(this.props)
         return (
-            <Form onSubmit={this.handleSubmit}>
+            <Form className="auth-form" onSubmit={this.handleSubmit}>
+                <h1 className="form-title">Login</h1>
                 <Form.Group controlId="formBasicUsername">
-                    <Form.Label>Username</Form.Label>
-                    <Form.Control onChange={this.handleChange} name="username" type="text" placeholder="Enter Username" value={this.state.username}/>
+                    <Form.Control className="form-input" onChange={this.handleChange} name="username" type="text" placeholder="Enter Username" value={this.state.username}/>
                 </Form.Group>
                 <Form.Group controlId="formBasicPassword">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control onChange={this.handleChange} name="password" type="password" placeholder="Password" />
+                    <Form.Control className="form-input" onChange={this.handleChange} name="password" type="password" placeholder="Enter Password" />
                 </Form.Group>
-                <Button variant="primary" type="submit">
+                <Button variant="primary" type="submit" className="auth-submit-button">
                     Submit
                 </Button>
             </Form>

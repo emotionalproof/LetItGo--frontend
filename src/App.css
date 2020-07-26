@@ -1,6 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat&display=swap');
+
 .App {
   text-align: center;
 }
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-image: linear-gradient(-20deg, #e9defa 0%, #fbfcdb 100%);
+}
+
+/* .welcome-container {
+  background-image: linear-gradient(-20deg, #e9defa 0%, #fbfcdb 100%);
+} */
 
 
 .navbar {
@@ -15,5 +26,49 @@
   width: 50%;
 }
 
+.formContainer {
+  padding: 2%;
+  margin: 2%;
+  border-style: double;
+  border-radius: 45px;
+  height: fit-content;
+}
+
+.auth-form {
+  text-align: -webkit-center;
+  padding: 3%
+}
+
+.auth-submit-button {
+  background-color: aliceblue;
+  color: black;
+  border-radius: 9px;
+}
 
 
+.form-input {
+  border-radius: 9px;
+}
+
+.form-row {
+  padding-top: 4%;
+  margin-bottom: 32%;
+}
+
+
+.routineItem, .form-title {
+  font-family: 'Dancing Script', cursive;
+}
+
+.navbar-img {
+  width: 50px;
+}
+
+.navbar-content {
+  font-size: 40px;
+  line-height: 40px;
+}
+
+.navbar {
+  
+}
