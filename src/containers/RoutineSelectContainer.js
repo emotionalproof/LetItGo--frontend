@@ -8,11 +8,8 @@ import Col from 'react-bootstrap/Col'
 const RoutineSelectContainer = props => {
     return (
         <Container fluid className="routine-select-container">
-            <Row >
-
-                <Col><h2 className="routine-select-title">Moments</h2></Col>
-
-                
+            <Row className="routine-select-title">
+                <Col><h2 id="activity-select-title">Moments</h2></Col>
             </Row>
             <Row className="routine-select-row"> 
                 
@@ -20,6 +17,8 @@ const RoutineSelectContainer = props => {
                 <ActivityCard 
                     name={activity.name}
                     key={activity.name}
+                    id={activity.id}
+                    addToRoutine={props.addToRoutine}
                 />
             )}
             </Row> 

@@ -22,7 +22,7 @@ body {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  justify-content: space-around;
+
 }
 
 .welcome-img {
@@ -59,7 +59,7 @@ body {
 }
 
 
-.routineItem, .form-title, .routine-select-title {
+.form-title, .routine-select-title {
   font-family: 'Satisfy', cursive;
 }
 
@@ -73,12 +73,20 @@ body {
 }
 
 .navbar {
-  
+  justify-content: flex-start;
+  background-image: linear-gradient(45deg, #8baaaa 0%, #ae8b9c 100%);
 }
 
+#activity-select-title {
+  font-size: 6vw
+}
 
 .routine-select-container {
+  border-radius: 10px
+}
 
+.routine-select-title {
+  margin-top: 1%
 }
 
 .routine-select-row {
@@ -89,6 +97,9 @@ body {
 
 }
 
+.home-top-container {
+  
+}
 .activity-card {
   font-size: 3vw;
   font-family: 'Satisfy', cursive;
@@ -96,11 +107,80 @@ body {
   width: 15vw;
   border-style: solid;
   border-radius: 15px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
 }
+
 
 .horizontal-bar {
   height: 10px;
-  width: 200%;
-  background-color: white
+  width: 100%;
+  border-style: solid;
+  background-color: white;
+  border-width: 1px;
 }
 
+.routine-row {
+  width: 100%;
+  justify-content: space-evenly;
+
+}
+
+.column-vertical-bar {
+  width: 1px;
+  background-color: white;
+  border-style: solid;
+  border-left-width: 1px;
+  border-right-width: 1px;
+  border-top-style: none;
+  border-bottom-style: none;
+}
+
+.vertical-bar {
+  width: 5px;
+}
+.routine-item {
+  min-width:8vw;
+  height: 5vw;
+  font-family: 'Satisfy', cursive;
+  border-style: solid;
+  border-width: 1px;
+  background-color: white;
+  border-radius: 14px;
+  margin: 4px;
+  vertical-align: middle;
+  justify-content: center;
+  padding-top: 6px;
+  font-size: 40px
+}
+
+.routine-item-column {
+  justify-content: flex-end;
+}
+
+.routine-container {
+  display: flex;
+  height: 30vw
+}
+
+.inner-routine-container {
+  max-height: 5vw;
+
+}
+
+.button-column {
+
+}
+.inner-routine-row {
+
+}
+
+.start-routine-button {
+  border-radius: 39px;
+  width: 24vw;
+  height: 15vw;
+  font-size: 59px;
+  margin-top: 6vw;
+  background-image: linear-gradient(45deg, #8baaaa 0%, #ae8b9c 100%);
+}
