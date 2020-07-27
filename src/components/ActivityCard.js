@@ -16,7 +16,7 @@ export class ActivityCard extends Component {
             );
 
         return (
-            <OverlayTrigger placement="bottom" delay={{ show: 250, hide: 400 }} overlay={renderTooltip}>
+            <OverlayTrigger placement="bottom" delay={{ show: 30, hide: 10 }} overlay={renderTooltip}>
             <Col className="routine-select-column">
                 <Card onClick={() => this.props.addToRoutine(this.props.id)} className="activity-card">
                     <Card.Body>{this.props.name}</Card.Body>

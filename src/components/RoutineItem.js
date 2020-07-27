@@ -17,7 +17,7 @@ export default class RoutineItem extends Component {
         const activity = this.props.activities.find(activity => activity.id === this.props.id)
 
         return (
-            <OverlayTrigger placement="bottom" delay={{ show: 250, hide: 400 }} overlay={renderTooltip}>
+            <OverlayTrigger placement={this.props.index % 2 === 0 ? "left" : "right"} delay={{ show: 10, hide: 0 }} overlay={renderTooltip}>
                 <Col onClick={() => this.props.removeFromRoutine(this.props.index)} className="routine-item">
                     {activity.name}
                 </Col>
