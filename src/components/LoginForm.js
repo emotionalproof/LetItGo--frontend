@@ -16,7 +16,7 @@ class LoginForm extends Component {
 
     handleSubmit = e => {
         e.preventDefault()
-        const {username, password} = this.state
+        const {username} = this.state
         this.fetchUser(username)
         
     }

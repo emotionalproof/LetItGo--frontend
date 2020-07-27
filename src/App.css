@@ -1,4 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
+
+/* font-family: 'Dancing Script', cursive; */
 
 .App {
   text-align: center;
@@ -56,19 +59,48 @@ body {
 }
 
 
-.routineItem, .form-title {
-  font-family: 'Dancing Script', cursive;
+.routineItem, .form-title, .routine-select-title {
+  font-family: 'Satisfy', cursive;
 }
 
 .navbar-img {
-  width: 50px;
+  width: 40px;
 }
 
 .navbar-content {
   font-size: 40px;
-  line-height: 40px;
+  line-height: 31px;
 }
 
 .navbar {
   
 }
+
+
+.routine-select-container {
+
+}
+
+.routine-select-row {
+  margin-bottom: 5%;
+}
+
+.routine-select-column {
+
+}
+
+.activity-card {
+  font-size: 3vw;
+  font-family: 'Satisfy', cursive;
+  /* font-size: 45px; */
+  width: 15vw;
+  border-style: solid;
+  border-radius: 15px;
+}
+
+.horizontal-bar {
+  height: 10px;
+  width: 200%;
+  background-color: white
+}
+

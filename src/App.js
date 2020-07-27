@@ -42,7 +42,7 @@ class App extends React.Component {
         <Route path='/login' render={(routerProps) => <Auth loggedIn={this.state.loggedIn} handleLogin={this.handleLogin} {...routerProps}/>} />
         <Route exact path='/' render={(routerProps) => <Home loggedIn={this.state.loggedIn} activities={this.state.activities} {...routerProps}/>  } />
       </Switch>
-      
+
     </div>
     );
   }
