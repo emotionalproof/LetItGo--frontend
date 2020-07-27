@@ -59,7 +59,7 @@ body {
 }
 
 
-.form-title, .routine-select-title {
+.form-title{
   font-family: 'Satisfy', cursive;
 }
 
@@ -78,7 +78,7 @@ body {
 }
 
 #activity-select-title {
-  font-size: 6vw
+  font-size: 5vw
 }
 
 .routine-select-container {
@@ -152,8 +152,7 @@ body {
   vertical-align: middle;
   justify-content: center;
   padding-top: 6px;
-  font-size: 2vw
-}
+  font-size: 2vw }
 
 .routine-item-column {
   justify-content: flex-end;
