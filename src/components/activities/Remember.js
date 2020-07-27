@@ -28,13 +28,14 @@ class Remember extends React.Component {
         })
         .then(resp => resp.json())
         .then(newPost => {
+            // create function to send newPost to wherever state is for displaying journal posts
             console.log(newPost)
             this.setState({
               initialState
             })
-    })
+        })
 
-} 
+  } 
 
   handleChange = e => {
     this.setState({
@@ -46,12 +47,13 @@ class Remember extends React.Component {
     console.log(this.state)
     return(
       <div>
-        <h1>Journal</h1>
+        
         <Container className="journal-container">
+          <h1 className="remember-title">Journal</h1>
           <Form onSubmit={event => this.handleSubmit(event)}>
             <Form.Group controlId="formJournal">
               <Form.Label>Enter The Date</Form.Label>
-                <Form.Control onChange={this.handleChange} value={this.state.date} name="date" type="date" placeholder="Release Your Thoughts"/>
+                <Form.Control onChange={this.handleChange} value={this.state.date} name="date" type="date" placeholder="Today's Date"/>
             </Form.Group>
             <Form.Group controlId="formJournal">
               <Form.Label>Type Your Thoughts</Form.Label>

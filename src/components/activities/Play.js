@@ -43,7 +43,7 @@ class PlayPiano extends Component {
   }
 
   createInstrumentOptions = () => {
-      const instruments = ["acoustic_grand_piano", "clavinet"]
+      const instruments = ["acoustic_grand_piano", "clavinet", "seashore", "violin", "breathe", "soundscape", "atmosphere"]
       let instrumentArray = instruments.map((instrument, index) => <option key={index}>{instrument}</option>
       )
       return instrumentArray
@@ -57,10 +57,21 @@ class PlayPiano extends Component {
   }
   
   pickInstrument() {
-    if (this.state.selectedInstrument === "acoustic_grand_piano") {
+    let selectedInstrument = this.state.selectedInstrument
+    if (selectedInstrument === "acoustic_grand_piano") {
       return "acoustic_grand_piano"
-    } else if (this.state.selectedInstrument === "clavinet") {
+    } else if (selectedInstrument === "clavinet") {
       return "clavinet"
+    } else if (selectedInstrument === "violin") {
+      return "violin"
+    } else if (selectedInstrument === "seashore") {
+      return "seashore"
+    } else if (selectedInstrument === "breathe") {
+      return "breath_noise"
+    } else if (selectedInstrument === "soundscape") {
+      return "fx_2_soundtrack"
+    } else if (selectedInstrument === "atmosphere") {
+      return "fx_4_atmosphere"
     } else {
       return "acoustic_grand_piano"
     }
@@ -88,6 +99,7 @@ class PlayPiano extends Component {
             )}
           />
         )}
+        <h1 className="play-title">Play</h1>
        </DimensionsProvider>
        {this.renderInstrumentDropdown()}
     </>
