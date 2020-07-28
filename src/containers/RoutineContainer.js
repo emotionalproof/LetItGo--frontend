@@ -8,11 +8,11 @@ export default class RoutineContainer extends Component {
         return (
             <Container fluid className="inner-routine-container">
                 <Row className="inner-routine-row">
-                {this.props.routine.map((id, index) => 
+                {this.props.routine.map((userAct, index) => 
                     <RoutineItem 
                         index={index}
-                        key={`${index}`.concat(`${id}`)}
-                        id={id}
+                        key={`${index}`.concat(`${userAct.id}`)}
+                        userAct={userAct}
                         activities={this.props.activities}
                         removeFromRoutine={this.props.removeFromRoutine}
                     />

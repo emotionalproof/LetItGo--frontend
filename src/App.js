@@ -34,10 +34,8 @@ class App extends React.Component {
   }
 
   render() {
-    console.log(this.state)
     return (
     <div className="App">
-      
       <Switch>
         <Route path='/activities/:id' render={() => <div>An Activity</div>} />  
         <Route path='/activities' render={(routerProps) => <ActivitiesContainer {...routerProps}/> }/>

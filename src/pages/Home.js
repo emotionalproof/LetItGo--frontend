@@ -6,14 +6,26 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
-
-
 class Home extends Component {
-    _isMounted = false
-
     state = {
         routine: [],
         user: {}
+    }
+
+    componentDidMount() {
+        this.fetchUser()
+        // this.fetchRoutine()
+    }
+
+    fetchUser = () => {
+        const username = this.props.match.params.username
+        fetch(`http://localhost:3002/api/v1/users/login/${username}`).then(resp => resp.json())
+        .then(userData => this.setState({user: userData}))
+        .then(() => this.fetchRoutine())
+    }
+
+    fetchRoutine = () => {
+        fetch(`http://localhost:3002/api/v1/users/${this.state.user.id}/user_activities`).then(resp => resp.json()).then(routineData => this.setState({routine: routineData}))
     }
 
     addToRoutine = id => {
@@ -31,52 +43,64 @@ class Home extends Component {
         })
         .then(resp => resp.json())
         .then(userActObj => {
-            this.setState(prevState => {
-                return {
-                    routine: [...prevState.routine, userActObj.activity_id]
-                }
-            })
+            this.fetchRoutine()
+            // this.setState(prevState => {
+            //     console.log("prevstate after post", prevState.routine)
+            //     return {
+            //         routine: [...prevState.routine, userActObj]
+            //     }
+                
+            // })
+            // console.log(this.state)
         })
-        // if (this.state.routine.length <= 9){
-        // this.setState(prevState =>{
-        //     return {
-        //         routine: [...prevState.routine, id]
-        //     }
-        // })} else {
-        //     alert("I'm sorry, you cannot add more than 10 items to your routine")
-        // }
     }
 
-
-    removeFromRoutine = index => {
-        this.setState(prevState => {
-           prevState.routine.splice(index, 1)
-            return{
-                routine: prevState.routine
+    removeFromRoutine = userAct => {
+        fetch(`http://localhost:3002/api/v1/user_activities/${userAct.id}`,{
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json"
             }
         })
+        .then(() => this.updateRoutine())
+        // .then(resp => {
+        //     this.setState(prevState => {
+        //         prevState.routine.splice(userAct.position, 1)
+        //             return{
+        //                 routine: prevState.routine
+        //             }
+        //     })
+            
+        // })
+        
     }
 
-    componentDidMount() {
-        this._isMounted = true
-        this.fetchUser()
-    }
-
-    fetchUser = () => {
-        const username = this.props.match.params.username
-        console.log(username)
-        fetch(`http://localhost:3002/api/v1/users/login/${username}`).then(resp => resp.json()).then(userData => this.setState({user: userData}))
-    }
-
-    componentWillUnmount() {
-        this._isMounted = false;
+    
+    updateRoutine = () => {
+        // this.setState({routine: []})
+        let routine = this.state.routine
+        routine.forEach((routineItem, index) =>
+        fetch(`http://localhost:3002/api/v1/user_activities/${routineItem.id}`,{
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json"
+            },
+            body: JSON.stringify({
+                position: index
+            })
+        })
+        .then(resp => resp.json())
+        .then(json => {
+            this.fetchRoutine()
+        })
+        )
     }
 
     render() {
-        // console.log("props", this.props)
-        console.log('this.state', this.state)
+        console.log(this.state.routine)
         return (
-            
             <>
                 <HomeNavbar />
                 {/* {!this.props.loggedIn && this.props.history.push('/welcome')} */}
@@ -109,6 +133,5 @@ class Home extends Component {
         )
     }
 }
-
 
 export default Home
