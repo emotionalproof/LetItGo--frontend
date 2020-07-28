@@ -2,8 +2,11 @@ import React from 'react'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container'
+import Table from 'react-bootstrap/Table'
+import JournalEntry from './JournalEntry'
 
 const initialState = {
+  entries: [],
   date: "",
   content: ""
 }
@@ -11,37 +14,65 @@ const initialState = {
 class Remember extends React.Component {
  
   state = initialState
-  
-  handleSubmit = e => {
-    e.preventDefault()
-    const {date, content} = this.state
-    fetch(`http://localhost:3002/api/v1/user_activity_logs`, {
-            method: 'POST',
-            headers: {
-                "Content-Type": "application/json",
-                Accept: "application/json"
-            },
-            body: JSON.stringify({
-               date,
-               content
-            })
-        })
-        .then(resp => resp.json())
-        .then(newPost => {
-            // create function to send newPost to wherever state is for displaying journal posts
-            // console.log(newPost)
-            this.setState({
-              initialState
-            })
-        })
 
-  } 
+  // componentDidMount() {
+  //   fetch(`http://localhost:3002/api/v1/user_activity_logs`)
+  //     .then(resp => resp.json())
+  //     .then(data => {
+  //       this.setState({
+  //         entries: data
+  //       })
+  //     })
+  // }
+  
+  // handleSubmit = e => {
+  //   e.preventDefault()
+  //   const {date, content} = this.state
+  //   fetch(`http://localhost:3002/api/v1/user_activity_logs`, {
+  //           method: 'POST',
+  //           headers: {
+  //               "Content-Type": "application/json",
+  //               Accept: "application/json"
+  //           },
+  //           body: JSON.stringify({
+  //              date,
+  //              content
+  //           })
+  //       })
+  //       .then(resp => resp.json())
+  //       .then(newPost => {
+  //           this.setState({
+  //             entries: [...this.state.entries, newPost],
+  //             initialState
+  //           })
+  //       })
+
+  // } 
 
   handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value
     })
  }
+
+  // handleDeleteClick = id => {
+  //   console.log(id)
+  //   fetch(`http://localhost:3002/api/v1/user_activity_logs/${id}`, {
+  //     method: "DELETE"
+  //   })
+  //   this.setState({
+  //     entries: [this.state.entries.filter(entry => entry.id !== id)]
+  //   })
+  // }
+ 
+ renderUserEntries = () => {
+    return this.state.entries.map((entry, index) => <JournalEntry
+      key={index}
+      entry={entry}
+      handleDeleteClick={this.handleDeleteClick}
+    />  
+    )   
+  }
   
   render(){
     // console.log(this.state)
@@ -61,6 +92,20 @@ class Remember extends React.Component {
             </Form.Group>
             <Button variant="primary" type="submit">Submit Entry</Button>
           </Form>
+        </Container>
+        <Container>
+          <Table striped bordered hover>
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Entry</th>
+                <th>Delete Memory?</th>
+              </tr>
+            </thead>
+            <tbody>
+            {this.renderUserEntries()}
+          </tbody>
+        </Table>
         </Container>
     </div>
   )
