@@ -101,10 +101,10 @@ body {
   
 }
 .activity-card {
-  font-size: 3vw;
+  font-size: 1.5vw;
   font-family: 'Satisfy', cursive;
   /* font-size: 45px; */
-  width: 15vw;
+  width: 10vw;
   border-style: solid;
   border-radius: 15px;
   border-style: solid;
@@ -199,8 +199,8 @@ body {
 .routine-button {
   background-image: linear-gradient(45deg, #8baaaa 0%, #ae8b9c 100%);
   border-radius: 15px;
-  width: 5vw;
-  height: 5vw;
+  width: 7vw;
+  height: 9vw;
   border-style: none;
   color: black
 }

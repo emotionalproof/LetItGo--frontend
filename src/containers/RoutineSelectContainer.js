@@ -13,7 +13,7 @@ const RoutineSelectContainer = props => {
             </Row>
             <Row className="routine-select-row"> 
                 
-            {props.activities.map(activity => 
+            {props.activities.filter(activity => activity.name !== "Select").map(activity => 
                 <ActivityCard 
                     name={activity.name}
                     key={activity.name}

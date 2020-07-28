@@ -10,8 +10,10 @@ import BreatheComponent from '../components/activities/BreatheComponent';
 import Learn from '../components/activities/Learn';
 import PlayPiano from '../components/activities/Plays';
 import Remember from '../components/activities/Remember';
+import Walk from '../components/activities/Walk';
+import Select from '../components/activities/Select';
 
-const activities = [{name: "Breathe", id: 17}, {name: "Learn", id: 18}, {name: "Play", id: 19}, {name: "Walk", id: 20}]
+const activities = [{name: "Breathe", id: 17}, {name: "Learn", id: 18}, {name: "Play", id: 19}, {name: "Walk", id: 20}, {name: "Remember", id: 21}, {name: "Select", id: 22} ]
 
 class Home extends Component {
     state = {
@@ -19,7 +21,8 @@ class Home extends Component {
         routineActivities: [17, 18, 19, 20],
         user: {},
         displayRoutine: true,
-        activities: []
+        activities: [],
+        routineStart: false
     }
 
     componentDidMount() {
@@ -31,8 +34,15 @@ class Home extends Component {
     fetchUser = () => {
         const username = this.props.match.params.username
         fetch(`http://localhost:3002/api/v1/users/login/${username}`).then(resp => resp.json())
-        .then(userData => this.setState({user: userData}))
-        .then(() => this.fetchRoutine())
+        .then(userData => {
+            this.setState({user: userData})
+            this.renderUserActivities(this.state.user.user_activities)
+            })
+    }
+
+    renderUserActivities = userActivityArray => {
+        let newArray = userActivityArray.filter(userAct => userAct.completed === false)
+        this.setState({routine: newArray})
     }
 
     fetchRoutine = () => {
@@ -92,13 +102,12 @@ class Home extends Component {
             })
             
         })
-        .then(() => this.updateRoutine())
+        .then(this.updateRoutine)
         
     }
 
     
     updateRoutine = () => {
-        // this.setState({routine: []})
         let routine = this.state.routine
         routine.forEach((routineItem, index) =>
         fetch(`http://localhost:3002/api/v1/user_activities/${routineItem.id}`,{
@@ -119,7 +128,7 @@ class Home extends Component {
     }
 
  
-
+//ANCHOR automation
     completeActivity = id => {
         fetch(`http://localhost:3002/api/v1/user_activities/${id}`,{
             method: "PATCH",
@@ -138,26 +147,46 @@ class Home extends Component {
     }
 
     renderRoutineActivities = () => {
-        const activityId = this.state.routineActivities[0]
-        const activity = activities.find(activity => activity.id === activityId)
-        return activity.name
+        const help = (this.state.routine[0] === undefined ? 
+            22 : this.state.routine.sort((a, b) => a.position - b.position)[0].activity_id)
+        // console.log("routine:", this.state.routine)
+        const activityName = activities.find(activity => activity.id === help).name
+        return activityName
+        // const activityId = currentRoutineItem.activity_id
+        // const activity = activities.find(activity => activity.id === activityId)
+        // activityId
     }
 
     nextActivity = () => {
-        const first = this.state.routineActivities[0]
+        // this.setState({routineStart: true})
+        // (this.state.routine !== undefined ? this.changeToComplete(this.state.routine[0] ) : null)
         this.setState(prevState => {
-            prevState.routineActivities.splice(0, 1)
+            prevState.routine.splice(0, 1)
             return{
-                routineActivities: [...prevState.routineActivities, first]
+                routine: [...prevState.routine]
             }
         })
-  
-
     }
 
+    changeToComplete = routineItem => {
+        fetch(`http://localhost:3002/api/v1/user_activities/${routineItem.id}`,{
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json"
+            },
+            body: JSON.stringify({
+                completed: true
+            })
+        })
+            .then(resp => resp.json())
+            .then(json => {
+            this.fetchRoutine()
+        })
+    }
+    
+
     render() {
-        // console.log(this.state.routine)
-        console.log("render",this.state)
         return (
             <>
                 <HomeNavbar />
@@ -174,20 +203,25 @@ class Home extends Component {
                         <Col md={1} className="column-vertical-bar"></Col>
                         <Col md={3} onClick={this.nextActivity}className="button-column"><button className="start-routine-button">Start Your Routine</button></Col>
                         <Col md={1} className="column-vertical-bar"></Col>
-                        <Col md={3} className="routine-item-column"><RoutineContainer removeFromRoutine={this.removeFromRoutine} activities={this.props.activities} routine={this.state.routine}/></Col>
+                        <Col md={3} className="routine-item-column"><RoutineContainer removeFromRoutine={this.removeFromRoutine} activities={activities} routine={this.state.routine}/></Col>
                     </Row>
                 </Container>
-                <div className="horizontal-bar"></div>             
+                <div className="horizontal-bar"></div>    
                 <Container fluid className="activity-load-container">
                     <Row className="activity-load-row">
                         <Col md={1} className="column-vertical-bar"></Col>
                         <Col md={10} className="activity-load-column">
-                        {this.renderRoutineActivities() === "Breathe" ? <BreatheComponent /> : this.renderRoutineActivities() === "Play" ? <PlayPiano /> : <Remember />}
+                        {this.renderRoutineActivities() === "Select" ?
+                        <Select /> : this.state.routineStart === false ? 
+                        <Select /> : this.renderRoutineActivities() === "Breathe" ? 
+                        <BreatheComponent /> : this.renderRoutineActivities() === "Walk" ? 
+                        <Walk />: this.renderRoutineActivities() === "Remember" ? 
+                        <Remember /> : this.renderRoutineActivities() === "Learn" ? <Learn /> : <PlayPiano />}
                         </Col>
                         <Col md={1} className="column-vertical-bar">
-                            <Row><Button className="routine-button" onClick={this.routineAutomation}>Begin</Button></Row>
+                            <Row></Row>
                             <div className="timer-seperator"></div>
-                            <Row><Button className="routine-button" onClick={() => this.props.completeActivity(this.props.routine[0].id)}>Finish</Button></Row>
+                            <Row><Button className="routine-button" onClick={this.nextActivity}>Finish</Button></Row>
                         </Col>
                     </Row>
                 </Container>

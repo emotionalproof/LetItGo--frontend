@@ -11,8 +11,9 @@ export default class RoutineContainer extends Component {
                 <Row className="inner-routine-row">
                 {sortedRoutine.map((userAct, index) => 
                     <RoutineItem 
-                        index={index}
-                        key={`${index}`.concat(`${userAct.id}`)}
+                        // index={index}
+                        key={userAct.id}
+                        id={userAct.id}
                         userAct={userAct}
                         activities={this.props.activities}
                         removeFromRoutine={this.props.removeFromRoutine}

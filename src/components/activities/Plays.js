@@ -25,16 +25,24 @@ const keyboardShortcuts = KeyboardShortcuts.create({
 class PlayPiano extends Component {
 
   state ={
-    selectedInstrument: null
+    selectedInstrument: "acoustic_grand_piano",
+    unmount: false
   }
 
   componentDidMount() {
-    this.setState({
-      selectedInstrument: "acoustic_grand_piano"
-    })
+    this.pickInstrument()
+    this.renderInstrumentDropdown()
+    this.setState({unmount: false})
   }
 
-  
+  componentWillUnmount() {
+    this.pickInstrument()
+    this.renderInstrumentDropdown()
+    // ReactDOM.unmountComponentAtNode(<SoundfontProvider/>)
+    // this.setState({unmount: true})
+  }
+  // ReactDOM.unmountComponentAtNode(SoundfontProvider)
+
   renderInstrumentDropdown = () => {
     return <select value={this.state.selectedInstrument} onChange={event=>this.handleInstrumentSelect(event)}>
             <option value="1" disabled>Pick Your Sound</option>
@@ -44,7 +52,7 @@ class PlayPiano extends Component {
 
   createInstrumentOptions = () => {
       const instruments = ["acoustic_grand_piano", "clavinet", "seashore", "violin", "breathe", "soundscape", "atmosphere"]
-      let instrumentArray = instruments.map((instrument, index) => <option key={index}>{instrument}</option>
+      let instrumentArray = instruments.map((instrument, index) => <option value={instrument} key={index}>{instrument}</option>
       )
       return instrumentArray
                         
@@ -77,12 +85,15 @@ class PlayPiano extends Component {
     }
   }
   
+
+
   render() {
     // console.log(this.state)
     return (
       <>
        {/* <DimensionsProvider>
         {({ containerWidth, containerHeight }) => ( */}
+          {this.state.unmount === true ? <h1>Piano</h1>:
           <SoundfontProvider
             instrumentName={this.pickInstrument()}
             audioContext={audioContext}
@@ -97,8 +108,8 @@ class PlayPiano extends Component {
                 keyboardShortcuts={keyboardShortcuts}
               />
             )}
-          />
-        )}
+          />}
+        
         <h1 className="play-title">Play</h1>
        {/* </DimensionsProvider> */}
        {this.renderInstrumentDropdown()}
