@@ -6,7 +6,7 @@ import LoginForm from '../components/LoginForm';
 import RegisterForm from '../components/RegisterForm';
 
 const Auth = props => {
-    console.log(props)
+    // console.log(props)
     return (
         <Container className="auth-container">
             <Row className="form-row">

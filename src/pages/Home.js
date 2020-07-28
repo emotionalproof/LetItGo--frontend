@@ -9,36 +9,72 @@ import Col from 'react-bootstrap/Col'
 
 
 class Home extends Component {
+    _isMounted = false
+
     state = {
-        routine: []
+        routine: [],
+        user: {}
     }
 
     addToRoutine = id => {
-        if (this.state.routine.length <= 9){
-        this.setState(prevState =>{
-            return {
-                routine: [...prevState.routine, id]
-            }
-        })} else {
-            alert("I'm sorry, you cannot add more than 10 items to your routine")
-        }
+        fetch(`http://localhost:3002/api/v1/user_activities`,{
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json"
+            },
+            body: JSON.stringify({
+                position:   this.state.routine.length,
+                user_id:    this.state.user.id,
+                activity_id: id
+            })
+        })
+        .then(resp => resp.json())
+        .then(userActObj => {
+            this.setState(prevState => {
+                return {
+                    routine: [...prevState.routine, userActObj.activity_id]
+                }
+            })
+        })
+        // if (this.state.routine.length <= 9){
+        // this.setState(prevState =>{
+        //     return {
+        //         routine: [...prevState.routine, id]
+        //     }
+        // })} else {
+        //     alert("I'm sorry, you cannot add more than 10 items to your routine")
+        // }
     }
 
+
     removeFromRoutine = index => {
-        console.log(typeof index)
-        
         this.setState(prevState => {
-            let newRoutine = prevState.routine.splice(index, 1)
+           prevState.routine.splice(index, 1)
             return{
                 routine: prevState.routine
             }
         })
     }
 
+    componentDidMount() {
+        this._isMounted = true
+        this.fetchUser()
+    }
+
+    fetchUser = () => {
+        const username = this.props.match.params.username
+        console.log(username)
+        fetch(`http://localhost:3002/api/v1/users/login/${username}`).then(resp => resp.json()).then(userData => this.setState({user: userData}))
+    }
+
+    componentWillUnmount() {
+        this._isMounted = false;
+    }
 
     render() {
-        console.log(this.props)
-        console.log(this.state)
+        // console.log("props", this.props)
+        console.log('this.state', this.state)
         return (
             
             <>

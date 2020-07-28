@@ -15,7 +15,8 @@ const API = 'http://localhost:3002/api/v1/activities'
 class App extends React.Component {
   state = {
     activities: [],
-    loggedIn: false
+    loggedIn: false,
+    currentUserId: {}
   }
 
   componentDidMount() {
@@ -23,15 +24,17 @@ class App extends React.Component {
   }
   
 
-  handleLogin = () => {
+  handleLogin = user => {
     this.setState(prevState => {
       return {
-        loggedIn: !prevState.loggedIn
+        loggedIn: !prevState.loggedIn,
+        currentUser: user
       }
     })
   }
 
   render() {
+    console.log(this.state)
     return (
     <div className="App">
       
@@ -40,7 +43,8 @@ class App extends React.Component {
         <Route path='/activities' render={(routerProps) => <ActivitiesContainer {...routerProps}/> }/>
         <Route path='/welcome' render={(routerProps) =>  <Welcome loggedIn={this.state.loggedIn} {...routerProps}/>} />
         <Route path='/login' render={(routerProps) => <Auth loggedIn={this.state.loggedIn} handleLogin={this.handleLogin} {...routerProps}/>} />
-        <Route exact path='/' render={(routerProps) => <Home loggedIn={this.state.loggedIn} activities={this.state.activities} {...routerProps}/>  } />
+        <Route exact path='/' render={(routerProps) => <Home loggedIn={this.state.loggedIn} currentUser={this.state.currentUser} activities={this.state.activities} {...routerProps}/>  } />
+        <Route exact path='/:username' render={(routerProps) => <Home currentUser={this.state.currentUser} loggedIn={this.state.loggedIn} activities={this.state.activities} {...routerProps}/>  } />
       </Switch>
 
     </div>

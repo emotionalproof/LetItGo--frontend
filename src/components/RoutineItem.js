@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 import Tooltip from 'react-bootstrap/Tooltip'
-import Card from 'react-bootstrap/Card'
 import Col from 'react-bootstrap/Col'
-import Row from 'react-bootstrap/Row'
+
 
 
 export default class RoutineItem extends Component {

@@ -6,7 +6,6 @@ import Col from 'react-bootstrap/Col'
 
 
 const Welcome = (props) => {
-    console.log(props)
     return (
 
         <Container fluid className="welcome-container">

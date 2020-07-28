@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import Form from "react-bootstrap/Form";
 import Button from 'react-bootstrap/Button'
 
-const initialState = {username: "", password: "", userCheck: false, passwordCheck: false, user: {}}
+const formReset = {username: "", password: "", userCheck: false, passwordCheck: false,}
 
 class LoginForm extends Component {
 
-    state = initialState
+    state = {username: "", password: "", userCheck: false, passwordCheck: false, user: {}}
 
     handleChange = event => {
         this.setState({
@@ -22,19 +22,23 @@ class LoginForm extends Component {
     }
 
     fetchUser = username => {
-        fetch(`http://localhost:3002/api/v1/users/login/${username}`).then(resp => resp.json()).then(userData => this.setState({user: userData}))
-        .then(() => this.checkUsername())
+        fetch(`http://localhost:3002/api/v1/users/login/${username}`)
+            .then(resp => resp.json())
+            .then(userData => {
+                this.setState({user: userData})
+                this.checkUsername()
+            })
     }
 
-    checkUsername = (prop) => {
-        if (this.state.user.username !== this.state.username){
+    checkUsername = () => {
+        if (!this.state.user){
             alert("Username Not Found")
         } else if (this.state.user.password !== this.state.password){
             alert("Password Does Not Match Records")
         } else {
-            this.setState({initialState})
-            this.props.handleLogin()
-            this.props.push(`/`)  //this.props.push(`/${this.state.user.username}`)
+            this.setState({formReset})
+            this.props.handleLogin(this.state.user)
+            this.props.push(`/${this.state.user.username}`)
         }
     }
 

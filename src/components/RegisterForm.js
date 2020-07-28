@@ -2,18 +2,24 @@ import React, { Component } from "react";
 import Form from "react-bootstrap/Form";
 import Button from 'react-bootstrap/Button'
 
-const initialState = {
+const formReset= {
     firstName: "",
     lastName: "",
     username: "",
     password: "",
     passwordConfirmation: "",
-    usernameTaken: false
 }
 
 class RegisterForm extends Component {
 
-    state = initialState
+    state = {
+        firstName: "",
+        lastName: "",
+        username: "",
+        password: "",
+        passwordConfirmation: "",
+        newUser: {}
+    }
 
     handleChange = e => {
         this.setState({
@@ -52,16 +58,18 @@ class RegisterForm extends Component {
                 firstName, lastName, username, password, passwordConfirmation
             })
         })
-        .then(resp => resp.json()).then(newUser => {
-            this.setState({initialState})
-            this.props.handleLogin()
-            this.props.push(`/`)})  //this.props.push(`/${this.state.user.username}`))
-    }
+        .then(resp => resp.json())
+        .then(newUser => {
+            this.props.handleLogin(newUser)
+            this.props.push(`/${this.state.username}`)
+            this.setState({formReset})
+        })
+}
 
  
 
     render() {
-        console.log(this.state)
+        // console.log(this.state)
         return (
             <Form className="auth-form" onSubmit={this.handleSubmit}>
                 <h1 className="form-title">Register</h1>

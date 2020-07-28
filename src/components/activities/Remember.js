@@ -29,7 +29,7 @@ class Remember extends React.Component {
         .then(resp => resp.json())
         .then(newPost => {
             // create function to send newPost to wherever state is for displaying journal posts
-            console.log(newPost)
+            // console.log(newPost)
             this.setState({
               initialState
             })
@@ -44,7 +44,7 @@ class Remember extends React.Component {
  }
   
   render(){
-    console.log(this.state)
+    // console.log(this.state)
     return(
       <div>
         
