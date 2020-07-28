@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import { Piano, KeyboardShortcuts, MidiNumbers } from 'react-piano';
 import SoundfontPlayer from 'soundfont-player';
 import 'react-piano/dist/styles.css';
-import SoundfontProvider from '../src/SoundfontProvider';
-import DimensionsProvider from '../src/DimensionsProvider';
+import { Dimensions } from 'react-dimensions';
+import SoundfontProvider from '../../SoundfontProvider';
 
 const audioContext = new (window.AudioContext || window.webkitAudioContext)();
 const soundfontHostname = 'https://d1pzp51pvbm36p.cloudfront.net';
@@ -81,8 +81,8 @@ class PlayPiano extends Component {
     // console.log(this.state)
     return (
       <>
-       <DimensionsProvider>
-        {({ containerWidth, containerHeight }) => (
+       {/* <DimensionsProvider>
+        {({ containerWidth, containerHeight }) => ( */}
           <SoundfontProvider
             instrumentName={this.pickInstrument()}
             audioContext={audioContext}
@@ -90,7 +90,7 @@ class PlayPiano extends Component {
             render={({ isLoading, playNote, stopNote }) => (
               <Piano
                 noteRange={noteRange}
-                width={containerWidth}
+                // width={containerWidth}
                 playNote={playNote}
                 stopNote={stopNote}
                 disabled={isLoading}
@@ -100,7 +100,7 @@ class PlayPiano extends Component {
           />
         )}
         <h1 className="play-title">Play</h1>
-       </DimensionsProvider>
+       {/* </DimensionsProvider> */}
        {this.renderInstrumentDropdown()}
     </>
        

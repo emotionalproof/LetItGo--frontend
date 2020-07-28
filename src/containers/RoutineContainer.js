@@ -5,10 +5,11 @@ import Row from 'react-bootstrap/Row'
 
 export default class RoutineContainer extends Component {
     render() {
+        let sortedRoutine = this.props.routine.sort((a, b) => a.position - b.position)
         return (
             <Container fluid className="inner-routine-container">
                 <Row className="inner-routine-row">
-                {this.props.routine.map((userAct, index) => 
+                {sortedRoutine.map((userAct, index) => 
                     <RoutineItem 
                         index={index}
                         key={`${index}`.concat(`${userAct.id}`)}
