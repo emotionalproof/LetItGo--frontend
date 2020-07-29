@@ -37,7 +37,7 @@ class RoutineIndexContainer extends Component {
     }
 
     fetchActivities = () => {
-        fetch('http://localhost:3002/api/v1/activities').then(resp => resp.json()).then(activities => this.setState({activities}), () => console.log("poop", activities))
+        fetch('http://localhost:3002/api/v1/activities').then(resp => resp.json()).then(activities => this.setState({activities}))
     }
 
     addToRoutine = id => {
@@ -132,7 +132,6 @@ class RoutineIndexContainer extends Component {
     }
 
     render() {
-        console.log(this.state)
         return (
             <>
                 <div className="horizontal-bar"/>

@@ -20,7 +20,7 @@ class ActivityShowContainer extends Component {
     }
 
     componentDidMount() {
-        console.log(this.props.routine)
+        // console.log(this.props.routine)
     }
 
    
