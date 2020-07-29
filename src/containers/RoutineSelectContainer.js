@@ -5,7 +5,12 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
 
+
+
 const RoutineSelectContainer = props => {
+
+    const activities = [{name: "Breathe", id: 17}, {name: "Learn", id: 18}, {name: "Play", id: 19}, {name: "Walk", id: 20}, {name: "Remember", id: 21}, {name: "Select", id: 22} ]
+
     return (
         <Container  fluid="md" className="home-top-container">
             <Col>
@@ -13,7 +18,7 @@ const RoutineSelectContainer = props => {
                     <Container fluid className="routine-select-container">
                         <Row className="routine-select-title"><Col><h2 id="activity-select-title">Moments</h2></Col></Row>
                         <Row className="routine-select-row">  
-                            {props.activities.filter(activity => activity.name !== "Select").map(activity => 
+                            {activities.filter(activity => activity.name !== "Select").map(activity => 
                                 <ActivityCard 
                                     name={activity.name}
                                     key={activity.name}
