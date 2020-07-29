@@ -1,12 +1,36 @@
-import React from 'react'
+import React from "react"
+import NewsStories from './NewsStories';
 
-const Learn = () => {
-  return (
-    <div className="learn-container">
-      <h1>Whats Going On in the World Today!?</h1>
-        news API 
-    </div>
-  )
+                
+// var url = 'http://newsapi.org/v2/top-headlines?' +
+//             'sources=techcrunch&' +
+            
+// var req = new Request(url);  
+
+class Learn extends React.Component {
+  state = {
+    allNews: []
+  }
+
+  // componentDidMount() {
+  //  fetch(req)
+  //   .then(res => res.json())
+  //   .then(data => {
+  //     console.log(data)
+  //     this.setState({
+  //       allNews: data
+  //     })
+  //   })
+  // }
+  
+  render() {
+    console.log(this.state)
+    return(
+      <div>
+        <h1>Learn</h1>
+        {/* <NewsStories allNews={this.state.allNews}/> */}
+      </div>
+    )
+  }
 }
-
 export default Learn
