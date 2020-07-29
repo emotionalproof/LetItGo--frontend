@@ -5,7 +5,7 @@ import Col from 'react-bootstrap/Col'
 
 
 
-export default class RoutineItem extends Component {
+export default class RoutineCard extends Component {
    
     render() {
         const activity = this.props.activities.find(activity => activity.id === this.props.userAct.activity_id)

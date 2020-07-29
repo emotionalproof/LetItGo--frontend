@@ -12,6 +12,7 @@ import PlayPiano from '../components/activities/Plays';
 import Remember from '../components/activities/Remember';
 import Walk from '../components/activities/Walk';
 import Select from '../components/activities/Select';
+import RoutineIndexContainer from '../containers/RoutineIndexContainer';
 
 const activities = [{name: "Breathe", id: 17}, {name: "Learn", id: 18}, {name: "Play", id: 19}, {name: "Walk", id: 20}, {name: "Remember", id: 21}, {name: "Select", id: 22} ]
 
@@ -147,19 +148,16 @@ class Home extends Component {
     }
 
     renderRoutineActivities = () => {
-        const help = (this.state.routine[0] === undefined ? 
+        const routineLength = this.state.routine.length
+        // routineLength < 1 || routineLength === undefined ? 
+        const firstRoutine = (this.state.routine[0] === undefined ? 
             22 : this.state.routine.sort((a, b) => a.position - b.position)[0].activity_id)
-        // console.log("routine:", this.state.routine)
-        const activityName = activities.find(activity => activity.id === help).name
+        const activityName = activities.find(activity => activity.id === firstRoutine).name
+        console.log(activityName)
         return activityName
-        // const activityId = currentRoutineItem.activity_id
-        // const activity = activities.find(activity => activity.id === activityId)
-        // activityId
     }
 
     nextActivity = () => {
-        // this.setState({routineStart: true})
-        // (this.state.routine !== undefined ? this.changeToComplete(this.state.routine[0] ) : null)
         this.setState(prevState => {
             prevState.routine.splice(0, 1)
             return{
@@ -187,31 +185,21 @@ class Home extends Component {
     
 
     render() {
+        const next = this.renderRoutineActivities()
         return (
             <>
                 <HomeNavbar />
                 {/* {!this.props.loggedIn && this.props.history.push('/welcome')} */}
-                <div className="horizontal-bar"></div>
-                <Container  fluid="md" className="home-top-container">
-                    <Row>
-                        <Col><RoutineSelectContainer activities={this.props.activities} addToRoutine={this.addToRoutine}/></Col>
-                    </Row>
-                </Container>
-                <div className="horizontal-bar"></div>
-                <Container fluid className="routine-container" >
-                    <Row className="routine-row">
-                        <Col md={1} className="column-vertical-bar"></Col>
-                        <Col md={3} onClick={this.nextActivity}className="button-column"><button className="start-routine-button">Start Your Routine</button></Col>
-                        <Col md={1} className="column-vertical-bar"></Col>
-                        <Col md={3} className="routine-item-column"><RoutineContainer removeFromRoutine={this.removeFromRoutine} activities={activities} routine={this.state.routine}/></Col>
-                    </Row>
-                </Container>
-                <div className="horizontal-bar"></div>    
+                <div className="horizontal-bar"/>
+                <RoutineSelectContainer activities={this.props.activities} addToRoutine={this.addToRoutine}/>
+                <div className="horizontal-bar"/>
+                <RoutineIndexContainer nextActivity={this.nextActivity} removeFromRoutine={this.removeFromRoutine} activities={activities} routine={this.state.routine}/>
+                <div className="horizontal-bar"/>    
                 <Container fluid className="activity-load-container">
                     <Row className="activity-load-row">
                         <Col md={1} className="column-vertical-bar"></Col>
                         <Col md={10} className="activity-load-column">
-                        {this.renderRoutineActivities() === "Select" ?
+                        {next === "Select" ?
                         <Select /> : this.state.routineStart === false ? 
                         <Select /> : this.renderRoutineActivities() === "Breathe" ? 
                         <BreatheComponent /> : this.renderRoutineActivities() === "Walk" ? 
