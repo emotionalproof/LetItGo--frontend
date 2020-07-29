@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import HomeNavbar from '../components/HomeNavbar';
-import RoutineSelectContainer from '../containers/RoutineSelectContainer'
 import RoutineIndexContainer from '../containers/RoutineIndexContainer';
 
 
@@ -23,6 +22,8 @@ class Home extends Component {
     //     let newArray = userActivityArray.filter(userAct => userAct.completed === false)
     //     this.setState({routine: newArray})
     // }
+
+    
 
 //     fetchRoutine = () => {
 //         fetch(`http://localhost:3002/api/v1/users/${this.state.user.id}/user_activities`)

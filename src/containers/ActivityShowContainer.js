@@ -23,11 +23,7 @@ class ActivityShowContainer extends Component {
         console.log(this.props.routine)
     }
 
-    // routineAutomation = () => {
-    //     let activityName = "empty"
-    
-    //     }
-        // let activityName = this.props.nextActivity
+   
     renderRoutineActivities = () => {
         const routineLength = this.props.routine.length
         // routineLength < 1 || routineLength === undefined ? 
