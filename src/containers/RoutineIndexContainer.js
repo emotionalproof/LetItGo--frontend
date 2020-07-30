@@ -7,7 +7,7 @@ import RoutineSelectContainer from './RoutineSelectContainer';
 import ActivityShowContainer from './ActivityShowContainer';
 
 
-const activities = [{name: "Breathe", id: 17}, {name: "Learn", id: 18}, {name: "Play", id: 19}, {name: "Walk", id: 20}, {name: "Remember", id: 21}, {name: "Select", id: 22} ]
+const activities = [{name: "Breathe", id: 17}, {name: "Learn", id: 18}, {name: "Play", id: 19}, {name: "Walk", id: 20}, {name: "Remember", id: 21}, {name: "Select", id: 22}  ]
 
 
 class RoutineIndexContainer extends Component {

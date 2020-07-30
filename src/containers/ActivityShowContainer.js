@@ -9,6 +9,7 @@ import PlayPiano from '../components/activities/Plays';
 import Remember from '../components/activities/Remember';
 import Walk from '../components/activities/Walk';
 import Select from '../components/activities/Select';
+import Smile from '../components/activities/Smile';
 
 const activities = [{name: "Breathe", id: 17}, {name: "Learn", id: 18}, {name: "Play", id: 19}, {name: "Walk", id: 20}, {name: "Remember", id: 21}, {name: "Select", id: 22} ]
 
@@ -42,9 +43,12 @@ class ActivityShowContainer extends Component {
                     <Row className="activity-load-row">
                         <Col md={1} className="column-vertical-bar"></Col>
                         <Col md={10} className="activity-load-column">
-                            {next === "Select" ? <Select /> : this.props.routineStart === false ? 
-                            <Select /> : next === "Breathe" ? <BreatheComponent /> : next === "Walk" ? 
-                            <Walk />: next === "Remember" ? <Remember /> : next === "Learn" ? <Learn /> : <PlayPiano />}
+                            {next === "Select" ? <Select /> : this.props.routineStart === false ? <Select /> : 
+                            next === "Breathe" ? <BreatheComponent /> : 
+                            next === "Walk" ? <Walk />: 
+                            next === "Remember" ? <Remember /> : 
+                            next === "Learn" ? <Learn /> : 
+                            <PlayPiano />}
                         </Col>
                         <Col md={1} className="column-vertical-bar"><Row></Row>
                             <div className="timer-seperator"></div>
