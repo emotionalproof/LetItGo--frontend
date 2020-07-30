@@ -7,7 +7,7 @@ import RoutineSelectContainer from './RoutineSelectContainer';
 import ActivityShowContainer from './ActivityShowContainer';
 
 
-const activities = [{name: "Breathe", id: 17}, {name: "Learn", id: 18}, {name: "Play", id: 19}, {name: "Walk", id: 20}, {name: "Remember", id: 21}, {name: "Select", id: 22} ]
+const activities = [{name: "Breathe", id: 17}, {name: "Learn", id: 18}, {name: "Play", id: 19}, {name: "Walk", id: 20}, {name: "Remember", id: 21}, {name: "Select", id: 22}  ]
 
 
 class RoutineIndexContainer extends Component {
@@ -37,7 +37,7 @@ class RoutineIndexContainer extends Component {
     }
 
     fetchActivities = () => {
-        fetch('http://localhost:3002/api/v1/activities').then(resp => resp.json()).then(activities => this.setState({activities}), () => console.log("poop", activities))
+        fetch('http://localhost:3002/api/v1/activities').then(resp => resp.json()).then(activities => this.setState({activities}))
     }
 
     addToRoutine = id => {
@@ -132,7 +132,6 @@ class RoutineIndexContainer extends Component {
     }
 
     render() {
-        console.log(this.state)
         return (
             <>
                 <div className="horizontal-bar"/>

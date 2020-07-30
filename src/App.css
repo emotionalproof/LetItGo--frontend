@@ -16,6 +16,13 @@ body {
   background-image: linear-gradient(-20deg, #e9defa 0%, #fbfcdb 100%);
 } */
 
+.footer {
+  height: 3vw
+}
+
+.header {
+  height: 1vw
+}
 
 .navbar {
   background-color: aliceblue;
@@ -26,7 +33,12 @@ body {
 }
 
 .welcome-img {
-  width: 50%;
+  width: 40%;
+}
+
+
+.auth-footer {
+  height: 8vw
 }
 
 .formContainer {
@@ -35,6 +47,7 @@ body {
   border-style: double;
   border-radius: 45px;
   height: fit-content;
+  border-color: purple;
 }
 
 .auth-form {

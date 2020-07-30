@@ -14,6 +14,7 @@ const Auth = props => {
                 <Col></Col>
                 <Col xs={5} className="formContainer"><RegisterForm handleLogin={props.handleLogin} {...props.history}/></Col>
             </Row>
+            <Row className="auth-footer"></Row>
         </Container>
     )
 }
