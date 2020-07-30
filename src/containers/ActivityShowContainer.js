@@ -17,11 +17,12 @@ const activities = [{name: "Breathe", id: 17}, {name: "Learn", id: 18}, {name: "
 class ActivityShowContainer extends Component {
 
     state = {
-        activity: "button"
+        activity: "button",
+        logs: []
     }
 
     componentDidMount() {
-        // console.log(this.props.routine)
+        this.fetchUserActivityLogs()
     }
 
    
@@ -34,9 +35,34 @@ class ActivityShowContainer extends Component {
         return activityName
     }
 
+    renderRoutineActivities = () => {
+        const routineLength = this.props.routine.length
+        // routineLength < 1 || routineLength === undefined ? 
+        const firstRoutine = (this.props.routine[0] === undefined ? 
+            22 : this.props.routine.sort((a, b) => a.position - b.position)[0].activity_id)
+        const activityName = activities.find(activity => activity.id === firstRoutine).name
+        return activityName
+    }
+
+    getNextActivtiy = () => {
+        
+    }
+
+    fetchUserActivityLogs = () => {
+        fetch(`http://localhost:3002/api/v1/user_activity_logs/`)
+        .then(resp => resp.json())
+        .then(logs => {
+            console.log(logs)
+            this.setState({logs: logs})
+        })
+        
+    }
+
     
 
     render() {
+        // console.log("props", this.props)
+        // console.log("state", this.state)
         const next = this.renderRoutineActivities()
         return (
             <Container fluid className="activity-load-container">
@@ -46,7 +72,7 @@ class ActivityShowContainer extends Component {
                             {next === "Select" ? <Select /> : this.props.routineStart === false ? <Select /> : 
                             next === "Breathe" ? <BreatheComponent /> : 
                             next === "Walk" ? <Walk />: 
-                            next === "Remember" ? <Remember /> : 
+                            next === "Remember" ? <Remember logs={this.state.logs} userActivity={this.props.routine[0]} name="Remember" id={21}/> : 
                             next === "Learn" ? <Learn /> : 
                             <PlayPiano />}
                         </Col>

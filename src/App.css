@@ -222,3 +222,29 @@ body {
   border-style: none;
   color: white;
 }
+
+.news-image {
+  max-width:300px;
+  max-height:200px;
+  width: auto;
+  height: auto;
+  border-radius: 20px
+}
+
+.learn-button {
+  height: 40px;
+  width: 110px;
+  border-radius: 11px;
+  background-image: linear-gradient(to right, #434343 0%, black 100%);
+  color: white;
+  margin-top: 20px;
+}
+
+.news-footer {
+  height: 20px;
+  margin-top: 10px
+}
+
+.new-text {
+  text-align: left;
+}

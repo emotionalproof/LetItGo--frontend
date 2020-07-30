@@ -13,6 +13,7 @@ state= {
       <NewsCard 
         key={index}
         article={article}
+        index={index}
       />
     )
   }
@@ -25,6 +26,7 @@ state= {
   render(){
     console.log(this.props)
     return (
+      <>
       <div>
         <h1>Top Tech News</h1>
             {this.props.allNews.status === "ok" ?
@@ -32,8 +34,10 @@ state= {
                 {this.renderNewsCards()}
               </Container> : null
             } 
-        <button onClick={this.updateIndex}>More</button>
+        <button className="learn-button" onClick={this.updateIndex}>Learn More</button>
       </div>
+      <div className="news-footer"></div>
+      </>
     
     )
   }

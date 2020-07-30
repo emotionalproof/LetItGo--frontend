@@ -23,6 +23,7 @@ class App extends React.Component {
     fetch(API).then(resp => resp.json()).then(activities => this.setState({activities}))
   }
   
+  
 
   handleLogin = user => {
     this.setState(prevState => {
@@ -38,7 +39,6 @@ class App extends React.Component {
     <div className="App">
       <Switch>
         <Route path='/activities/:id' render={() => <div>An Activity</div>} />  
-        <Route path='/activities' render={(routerProps) => <ActivitiesContainer {...routerProps}/> }/>
         <Route path='/welcome' render={(routerProps) =>  <Welcome loggedIn={this.state.loggedIn} {...routerProps}/>} />
         <Route path='/login' render={(routerProps) => <Auth loggedIn={this.state.loggedIn} handleLogin={this.handleLogin} {...routerProps}/>} />
         <Route exact path='/:username' render={(routerProps) => <Home currentUser={this.state.currentUser} loggedIn={this.state.loggedIn} activities={this.state.activities} {...routerProps}/>  } />

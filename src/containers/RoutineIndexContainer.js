@@ -148,7 +148,7 @@ class RoutineIndexContainer extends Component {
                     </Row>
                 </Container>
                 <div className="horizontal-bar"/> 
-                <ActivityShowContainer routineStart={this.state.routineStart} nextActivity={this.nextActivity} routine={this.state.routine}/>
+                <ActivityShowContainer user={this.props.user} routineStart={this.state.routineStart} nextActivity={this.nextActivity} routine={this.state.routine}/>
             </>
         )
     }

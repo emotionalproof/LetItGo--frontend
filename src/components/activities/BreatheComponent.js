@@ -5,26 +5,40 @@ import Button from 'react-bootstrap/Button'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col';
   
-
+const song = new Audio('https://cdns-preview-9.dzcdn.net/stream/c-929d7f6b124450d4047452b9caee28b2-3.mp3')
 
 class BreatheComponent extends React.Component {
 
   
   state = {
-    timer: 0
+    timer: 1
   }
 
   componentDidMount() {
     this.setState({
-      timer: 0
+      timer: 1
     })
+    this.song = new Audio
+    this.song.src = 'https://cdns-preview-9.dzcdn.net/stream/c-929d7f6b124450d4047452b9caee28b2-3.mp3'
+
   }
 
+  componentWillUnmount() {
+    this.stopClock()
+    this.song.pause()
+
+  }
+  
   clockTick = () => {
-    this.state.timer < 30 &&
+    this.state.timer > 0 &&
     this.setState(prevState => ({
-      timer: prevState.timer + 1
+      timer: prevState.timer - 1
     }))
+    this.state.timer === 0 && this.checkAlarm()
+  }
+
+  checkAlarm =() => {
+    this.song.play()
   }
 
   handleStartClick = () => {
@@ -45,7 +59,9 @@ class BreatheComponent extends React.Component {
             <Col><Button className="timer-button" onClick={this.handleStartClick}>Start Timer</Button></Col>
             <Col></Col>
             <Col><Button className="timer-button" onClick={this.stopClock}>Stop Timer</Button></Col>
-            
+            <audio className="audio-element">
+              <source src="https://cdns-preview-9.dzcdn.net/stream/c-929d7f6b124450d4047452b9caee28b2-3.mp3"></source>
+            </audio>
         </Row>
         <Row><Col><h2 className="breathe-title">Press Start Timer When Ready</h2></Col></Row>
     </Container>

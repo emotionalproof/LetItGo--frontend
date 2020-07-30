@@ -8,46 +8,48 @@ import JournalEntry from './JournalEntry'
 const initialState = {
   entries: [],
   date: "",
-  content: ""
+  content: "",
+  userActivity: {}
 }
 
 class Remember extends React.Component {
  
   state = initialState
 
-  // componentDidMount() {
-  //   fetch(`http://localhost:3002/api/v1/user_activity_logs`)
-  //     .then(resp => resp.json())
-  //     .then(data => {
-  //       this.setState({
-  //         entries: data
-  //       })
-  //     })
-  // }
-  
-  // handleSubmit = e => {
-  //   e.preventDefault()
-  //   const {date, content} = this.state
-  //   fetch(`http://localhost:3002/api/v1/user_activity_logs`, {
-  //           method: 'POST',
-  //           headers: {
-  //               "Content-Type": "application/json",
-  //               Accept: "application/json"
-  //           },
-  //           body: JSON.stringify({
-  //              date,
-  //              content
-  //           })
-  //       })
-  //       .then(resp => resp.json())
-  //       .then(newPost => {
-  //           this.setState({
-  //             entries: [...this.state.entries, newPost],
-  //             initialState
-  //           })
-  //       })
 
-  // } 
+  componentDidMount() {
+    this.setState({userActivity: this.props.userActivity})
+  }
+
+  filterRememberEntries = () => {
+    
+  }
+
+  handleSubmit = e => {
+    e.preventDefault()
+    const {date, content} = this.state
+    fetch(`http://localhost:3002/api/v1/user_activity_logs`, {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json"
+        },
+        body: JSON.stringify({
+            date,
+            content,
+            user_activity_id: this.state.userActivity.id
+        })
+    })
+    .then(resp => resp.json())
+    .then(newPost => {
+        console.log(newPost)
+        // this.setState({
+        //   entries: [...this.state.entries, newPost],
+        //   initialState
+        // })
+    })
+
+  } 
 
   handleChange = e => {
     this.setState({
@@ -75,7 +77,6 @@ class Remember extends React.Component {
   }
   
   render(){
-    // console.log(this.state)
     return(
       <div>
         
