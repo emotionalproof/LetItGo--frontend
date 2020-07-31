@@ -73,7 +73,7 @@ class ActivityShowContainer extends Component {
     }
 
     render() {
-        console.log("props", this.props)
+        // console.log("props", this.props)
         const next = this.renderRoutineActivities()
         return (
             <Container fluid className="activity-load-container">

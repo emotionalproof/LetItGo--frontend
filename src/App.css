@@ -151,13 +151,7 @@ body {
   margin-bottom: 5%;
 }
 
-.routine-select-column {
 
-}
-
-.home-top-container {
-  
-}
 .activity-card {
     font-size: 1.5vw;
     font-family: 'Satisfy', cursive;
@@ -192,7 +186,7 @@ body {
 .routine-row {
   width: 100%;
   justify-content: space-evenly;
-
+  background-color: white;
 }
 
 .column-vertical-bar {
@@ -228,27 +222,52 @@ body {
 
 .routine-item-column {
   justify-content: flex-end;
+  background-image: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);
+  padding: 3vw;
+  border-top-right-radius: 6vw;
+  border-bottom-right-radius: 6vw;
+}
+
+.button-column {
+  background-image: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);
+  border-bottom-left-radius: 6vw;
+  border-top-left-radius: 6vw;
+}
+
+.activity-load-container {
+  background-color: white;
+}
+
+.activity-load-column {
+  background-image: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);
+}
+
+.column-vertical-bar-finish{
+  background-image: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);
+  border-top-right-radius: 6vw;
 }
 
 .routine-container {
   display: flex;
-  height: 30vw
+  height: 30vw;
+  background-color: white;
+
+}
+
+.routine-container-inside-column {
+  background-color: white;
 }
 
 .inner-routine-container {
   max-height: 5vw;
 
-}
-
-.button-column {
 
 }
-.inner-routine-row {
 
-}
+
 
 .start-routine-button {
-  border-radius: 28vw;
+  border-radius: 4vw;
   width: 20vw;
   min-height: 19.5vw;
   font-size: 4vw;
@@ -272,7 +291,6 @@ body {
 .start-routine-button:active {
   text-decoration: none;
 }
-
 
 
 .timer-seperator {
@@ -324,6 +342,16 @@ body {
 .routine-button:active {
   text-decoration: none;
 }
+
+.forecast-button.timer-button:visited,
+.forecast-button.timer-button:active, 
+.forecast-button.timer-button:hover, 
+.forecast-button.timer-button:link {
+  text-decoration: none;
+  color: white;
+  border-color:white
+}
+
 .news-image {
   max-width:300px;
   max-height:200px;
@@ -436,4 +464,10 @@ p.forecast {
 
 .journal-form-input {
   border-radius: 20px
+}
+
+.news-card-component {
+  border-radius: 2.25rem;
+  margin-top: 1vw;
+  margin-bottom: 1vw;
 }

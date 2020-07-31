@@ -8,8 +8,8 @@ class NewsCard extends React.Component {
   render() {
     console.log(this.props)
     return(
-        <Card>
-          <Card.Body>
+        <Card className="news-card-component">
+          <Card.Body className="news-card-component">
             <Container fluid>
               <Row>
                 <Col>

@@ -35,7 +35,7 @@ state= {
               <Container>
                 {this.renderNewsCards()}
               </Container> : 
-              <Spinner animation="grow" variant="info" />
+              <Spinner className="news-spinner" animation="grow" variant="info" />
             } 
         <Button variant="link" className="routine-button" onClick={this.updateIndex}>Learn More</Button>
       </div>

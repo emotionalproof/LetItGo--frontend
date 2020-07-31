@@ -102,7 +102,10 @@ class RoutineIndexContainer extends Component {
     }
 
     startRoutine = () => {
-        this.state.routineStart === false && this.setState({routineStart: true})
+        if (this.state.routineStart === false && this.state.routine.length > 0){
+            this.setState({routineStart: true})
+        }
+        
     }
 
     nextActivity = id => {
@@ -145,7 +148,7 @@ class RoutineIndexContainer extends Component {
                         <Col md={3} className="button-column"><Button variant="link" onClick={this.startRoutine} className="start-routine-button">Start Routine</Button></Col>
                         
                         <Col md={6} className="routine-item-column">
-                            <RoutineContainer loggedIn={this.props.loggedIn} displayRoutine={!this.state.routineStart} removeFromRoutine={this.removeFromRoutine} userActivities={this.state.userActivities}/>
+                            <RoutineContainer className="routine-container-inside-column" loggedIn={this.props.loggedIn} displayRoutine={!this.state.routineStart} removeFromRoutine={this.removeFromRoutine} userActivities={this.state.userActivities}/>
                         </Col>
                     </Row>
                 </Container>
