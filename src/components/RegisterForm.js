@@ -88,7 +88,7 @@ class RegisterForm extends Component {
                 <Form.Group controlId="formBasicPasswordConfirmation">
                     <Form.Control className="form-input" onChange={this.handleChange} name="passwordConfirmation" value={this.state.passwordConfirmation} type="password" placeholder="Confirm Password" />
                 </Form.Group>
-                <Button variant="primary" type="submit" className='auth-submit-button'>
+                <Button variant="link" type="submit" className='auth-submit-button routine-button'>
                     Submit
                 </Button>
             </Form>

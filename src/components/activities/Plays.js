@@ -44,7 +44,7 @@ class PlayPiano extends Component {
   // ReactDOM.unmountComponentAtNode(SoundfontProvider)
 
   renderInstrumentDropdown = () => {
-    return <select value={this.state.selectedInstrument} onChange={event=>this.handleInstrumentSelect(event)}>
+    return <select className="instrument-select" value={this.state.selectedInstrument} onChange={event=>this.handleInstrumentSelect(event)}>
             <option value="1" disabled>Pick Your Sound</option>
            {this.createInstrumentOptions()}
            </select>
@@ -52,7 +52,7 @@ class PlayPiano extends Component {
 
   createInstrumentOptions = () => {
       const instruments = ["acoustic_grand_piano", "clavinet", "seashore", "violin", "breathe", "soundscape", "atmosphere"]
-      let instrumentArray = instruments.map((instrument, index) => <option value={instrument} key={index}>{instrument}</option>
+      let instrumentArray = instruments.map((instrument, index) => <option value={instrument} key={index}>{instrument.split("_").join(" ")}</option>
       )
       return instrumentArray
                         
@@ -113,6 +113,7 @@ class PlayPiano extends Component {
         <h1 className="play-title">Play</h1>
        {/* </DimensionsProvider> */}
        {this.renderInstrumentDropdown()}
+       <div className="news-footer"></div>
     </>
        
       );

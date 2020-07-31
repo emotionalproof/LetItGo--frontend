@@ -15,7 +15,9 @@ class Home extends Component {
     fetchUser = () => {
         const username = this.props.match.params.username
         fetch(`http://localhost:3002/api/v1/users/login/${username}`).then(resp => resp.json())
-        .then(userData => this.setState({user: userData}))
+        .then(userData => {
+            // userData.status !== undefined && 
+            this.setState({user: userData})})
     }
 
     // renderUserActivities = userActivityArray => {

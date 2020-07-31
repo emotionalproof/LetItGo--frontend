@@ -53,7 +53,7 @@ class LoginForm extends Component {
                 <Form.Group controlId="formBasicPassword">
                     <Form.Control className="form-input" onChange={this.handleChange} name="password" type="password" placeholder="Enter Password" />
                 </Form.Group>
-                <Button variant="primary" type="submit" className="auth-submit-button">
+                <Button variant="link" type="submit" className="auth-submit-button routine-button">
                     Submit
                 </Button>
             </Form>

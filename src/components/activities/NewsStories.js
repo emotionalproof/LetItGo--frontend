@@ -1,6 +1,8 @@
 import React from "react"
 import NewsCard from './NewsCard'
 import Container from 'react-bootstrap/Container'
+import Spinner from 'react-bootstrap/Spinner'
+import Button from 'react-bootstrap/Button'
 
 class NewsStories extends React.Component {
    
@@ -28,13 +30,14 @@ state= {
     return (
       <>
       <div>
-        <h1>Top Tech News</h1>
+        <h1 className="journal-form">Top Tech News</h1>
             {this.props.allNews.status === "ok" ?
               <Container>
                 {this.renderNewsCards()}
-              </Container> : null
+              </Container> : 
+              <Spinner animation="grow" variant="info" />
             } 
-        <button className="learn-button" onClick={this.updateIndex}>Learn More</button>
+        <Button variant="link" className="routine-button" onClick={this.updateIndex}>Learn More</Button>
       </div>
       <div className="news-footer"></div>
       </>

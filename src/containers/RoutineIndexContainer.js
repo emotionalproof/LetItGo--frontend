@@ -5,9 +5,10 @@ import Col from 'react-bootstrap/Col'
 import RoutineContainer from './RoutineContainer';
 import RoutineSelectContainer from './RoutineSelectContainer';
 import ActivityShowContainer from './ActivityShowContainer';
+import Button from 'react-bootstrap/Button'
 
 
-const activities = [{name: "Breathe", id: 17}, {name: "Learn", id: 18}, {name: "Play", id: 19}, {name: "Walk", id: 20}, {name: "Remember", id: 21}, {name: "Select", id: 22}  ]
+// const activities = [{name: "Breathe", id: 17}, {name: "Learn", id: 18}, {name: "Play", id: 19}, {name: "Walk", id: 20}, {name: "Remember", id: 21}, {name: "Select", id: 22}  ]
 
 
 class RoutineIndexContainer extends Component {
@@ -140,9 +141,10 @@ class RoutineIndexContainer extends Component {
                 <Container fluid className="routine-container" >
                     <Row className="routine-row">
                         <Col md={1} className="column-vertical-bar"></Col>
-                        <Col md={3} className="button-column"><button onClick={this.startRoutine} className="start-routine-button">Start Your Routine</button></Col>
-                        <Col md={1} className="column-vertical-bar"></Col>
-                        <Col md={3} className="routine-item-column">
+                        <Col md={2}></Col>
+                        <Col md={3} className="button-column"><Button variant="link" onClick={this.startRoutine} className="start-routine-button">Start Routine</Button></Col>
+                        
+                        <Col md={6} className="routine-item-column">
                             <RoutineContainer displayRoutine={!this.state.routineStart} removeFromRoutine={this.removeFromRoutine} userActivities={this.state.userActivities}/>
                         </Col>
                     </Row>

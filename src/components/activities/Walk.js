@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Conditions from "./Conditions"
+import Button from 'react-bootstrap/Button'
 
   
 const Walk = () => {
@@ -16,6 +17,7 @@ const Walk = () => {
       .then(res => {
         console.log(res)
         setResponseObj(res)
+        setCity("")
       })
       .catch(err => {
         console.log(err);
@@ -24,19 +26,20 @@ const Walk = () => {
   
   return(
     <div className="play-container">
-           <h2>Walk</h2>
+           <h2 className="journal-form">Check the weather and then go outside and take a stroll . . . </h2>
            <Conditions 
             responseObj={responseObj}
            />
            <form onSubmit={getForecast}>
                 <input
+                    className='forecast-input'
                     type="text"
                     placeholder="Enter City"
                     maxLength="50"
                     value={city}
                     onChange={(e) => setCity(e.target.value)}
                     />
-                <button type="submit">Get Forecast</button>
+                <Button variant="link" className="forecast-button timer-button" type="submit">Get Forecast</Button>
           </form>
 
     </div>

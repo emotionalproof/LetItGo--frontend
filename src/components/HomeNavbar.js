@@ -3,6 +3,7 @@ import Navbar from 'react-bootstrap/Navbar'
 
 
 const HomeNavbar = props => {
+    console.log(props)
     return (
         <Navbar variant="dark" className="navbar">
             <Navbar.Brand href="#home" className="navbar-content">
@@ -14,6 +15,7 @@ const HomeNavbar = props => {
             />{' '}
             
             </Navbar.Brand>
+            
         </Navbar>
       
     )

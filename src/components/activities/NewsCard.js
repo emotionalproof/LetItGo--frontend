@@ -19,9 +19,9 @@ class NewsCard extends React.Component {
                 </Col>
               </Row>
               <Row>
-                <Col>{this.props.index % 2 === 0 && <img src={this.props.article.urlToImage} alt="Card image" className="news-image"/>}</Col>
+                <Col>{this.props.index % 2 === 0 && <img src={this.props.article.urlToImage} alt="news" className="news-image"/>}</Col>
                 <Col><Card.Text className='new-text'>{this.props.article.description}</Card.Text></Col>
-                <Col>{this.props.index % 2 !== 0 && <img src={this.props.article.urlToImage} alt="Card image" className="news-image"/>}</Col>
+                <Col>{this.props.index % 2 !== 0 && <img src={this.props.article.urlToImage} alt="news" className="news-image"/>}</Col>
               </Row>
             </Container>
           </Card.Body>

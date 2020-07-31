@@ -1,7 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
 
 /* font-family: 'Dancing Script', cursive; */
+/* font-family: 'Indie Flower', cursive; */
+ /* background-image: linear-gradient(-20deg, #e9defa 0%, #fbfcdb 100%); */
 
 .App {
   text-align: center;
@@ -9,7 +12,7 @@
 
 body {
   font-family: 'Montserrat', sans-serif;
-  background-image: linear-gradient(-20deg, #e9defa 0%, #fbfcdb 100%);
+  background-image: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);
 }
 
 /* .welcome-container {
@@ -47,23 +50,27 @@ body {
   border-style: double;
   border-radius: 45px;
   height: fit-content;
-  border-color: purple;
+  border-color:white;
 }
 
 .auth-form {
   text-align: -webkit-center;
-  padding: 3%
+  padding: 3%;
+  color: white
 }
 
-.auth-submit-button {
-  background-color: aliceblue;
-  color: black;
+.auth-submit-button.routine-button {
+  height: 3vw;
+  color: white;
   border-radius: 9px;
 }
+
 
 
 .form-input {
-  border-radius: 9px;
+  border-radius: 15px;
+  margin-bottom: 35px;
+  margin-top: 20px;
 }
 
 .form-row {
@@ -74,6 +81,19 @@ body {
 
 .form-title, .remember-title, .breathe-title, .play-title {
   font-family: 'Satisfy', cursive;
+  margin-top: 15px;
+  color: white
+}
+
+.timer-row {
+  justify-content: center;
+}
+.breathe-title.breathe-countdown {
+  border-style: solid;
+  font-size: 3.5vw;
+  border-radius: 54px;
+  min-width: 5vw;
+  min-height: 5vw;
 }
 
 .navbar-img {
@@ -95,11 +115,13 @@ body {
 }
 
 .routine-select-container {
-  border-radius: 10px
+  border-radius: 10px;
+  max-width: fit-content;
 }
 
 .routine-select-title {
-  margin-top: 1%
+  margin-top: 1%;
+  color: white
 }
 
 .routine-select-row {
@@ -114,26 +136,34 @@ body {
   
 }
 .activity-card {
-  font-size: 1.5vw;
-  font-family: 'Satisfy', cursive;
-  /* font-size: 45px; */
-  width: 10vw;
-  border-style: solid;
-  border-radius: 15px;
-  border-style: solid;
-  border-width: 1px;
-  border-color: purple;
-  
+    font-size: 1.5vw;
+    font-family: 'Satisfy', cursive;
+    color: white;
+    /* font-size: 45px; */
+    width: auto;
+    min-width: 8.5vw;
+    min-height: 8vw;
+    border-style: solid;
+    border-width: 1px;
+    border-color: white;
+    background-image: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);
+    border-radius: 7vw;
+ 
+}
+
+.activity-card-body {
+  position: relative;
+  top: 31px;
 }
 
 
 .horizontal-bar {
-  height: 10px;
+  height: 25px;
   width: 100%;
-  border-style: solid;
+  /* border-style: solid; */
   background-color: white;
-  border-color: purple;
-  border-width: 1px;
+  /* border-color: purple; */
+  /* border-width: 1px; */
 }
 
 .routine-row {
@@ -145,31 +175,33 @@ body {
 .column-vertical-bar {
   width: 1px;
   background-color: white;
-  border-style: solid;
+  /* border-style: solid; */
   border-left-width: 1px;
   border-right-width: 1px;
   border-top-style: none;
   border-bottom-style: none;
-  border-color: purple
+  border-color: purple;
+ 
 }
 
 .vertical-bar {
   width: 5px;
 }
 .routine-item {
-  min-width:8vw;
+  min-width:fit-content;
   height: 5vw;
   font-family: 'Satisfy', cursive;
   border-style: solid;
-  border-color: purple;
+  border-color: white;
   border-width: 1px;
-  background-color:  white;
+  color: white;
+
   border-radius: 14px;
   margin: 4px;
   vertical-align: middle;
   justify-content: center;
   padding-top: 6px;
-  font-size: 2vw }
+  font-size: 3vw }
 
 .routine-item-column {
   justify-content: flex-end;
@@ -193,36 +225,82 @@ body {
 }
 
 .start-routine-button {
-  border-radius: 39px;
-  width: 24vw;
-  height: 15vw;
+  border-radius: 28vw;
+  width: 20vw;
+  min-height: 19.5vw;
   font-size: 4vw;
   margin-top: 6vw;
-  background-image: linear-gradient(to right, #434343 0%, black 100%);
+  border-style: solid;
+  border-color: white;
   color: white;
+  text-decoration: none;
 }
+
+
+.start-routine-button:link {
+  text-decoration: none;
+}
+
+.start-routine-button:hover {
+  color: white;
+  text-decoration: none;
+}
+
+.start-routine-button:active {
+  text-decoration: none;
+}
+
+
 
 .timer-seperator {
   height: 4vw;
 }
 
 .timer-button {
-  background-image: linear-gradient(to right, #434343 0%, black 100%);
   border-radius: 15px;
-  width: 8vw;
-  height: 4vw;
+
   border-style: none
 }
 
-.routine-button {
-  background-image: linear-gradient(to right, #434343 0%, black 100%);
-  border-radius: 15px;
-  width: 7vw;
-  height: 9vw;
-  border-style: none;
-  color: white;
+.routine-button.journal-delete-button {
+  width: auto;
+  height: 45px;
+
 }
 
+.journal-submit.routine-button {
+  margin-bottom: 10px;
+}
+
+.routine-button {
+  border-radius: 15px;
+  width: 7vw;
+  height: 7vw;
+  border-style: none;
+  color: white;
+  border-style: solid;
+  border-color: white;
+  font-size: 1.5vw
+}
+
+.routine-button:visited {
+  text-decoration: none;
+  color: white;
+  border-color:white
+}
+
+.routine-button:link {
+  text-decoration: none;
+}
+
+.routine-button:hover {
+  color: white;
+  text-decoration: none;
+}
+
+.routine-button:active {
+  text-decoration: none;
+}
 .news-image {
   max-width:300px;
   max-height:200px;
@@ -232,6 +310,7 @@ body {
 }
 
 .learn-button {
+  margin-top: 40px;
   height: 40px;
   width: 110px;
   border-radius: 11px;
@@ -247,4 +326,91 @@ body {
 
 .new-text {
   text-align: left;
+}
+
+.forecast-button {
+  height: 3vw;
+  width: 130px;
+  border-radius: 11px;
+  color: white;
+  margin-top: 20px;
+  border-style: solid;
+  border-color: white;
+  margin-left: 3vw
+}
+
+.forecast-input {
+  height: 60px;
+  width: 300px;
+  border-radius: 50px;
+  margin-top: 20px;
+  font-size: 20px;
+  border-color: white
+}
+
+.weather-icon {
+  height: auto;
+  width: auto;
+  min-width: 8vw;
+  border-style: solid;
+  border-radius: 21px;
+
+  background-image: linear-gradient(to right, #434343 0%, black 100%);
+}
+
+strong.forecast-location {
+  font-size: 3vw;
+}
+
+p.forecast {
+  font-size: 2vw;
+}
+
+.instrument-select {
+  height: 3vw;
+  border-radius: 15px;
+}
+
+.journal-table-header-date {
+  width: 12vw;
+  color:white
+}
+
+.journal-delete {
+  width: 10vw;
+}
+
+.journal-delete-button {
+  border-radius: 50px;
+}
+
+.journal-content {
+  font-family: 'Indie Flower', cursive;
+  font-size: 1vw;
+  color:white
+}
+
+.select-container {
+  color: white
+}
+
+.journal-container {
+  color: white
+}
+
+.journal-form {
+  color: white
+}
+
+.journal-entry-table {
+  color: white
+}
+
+.journal-date-entry {
+  width: 10vw;
+  border-radius: 40px
+}
+
+.journal-form-input {
+  border-radius: 20px
 }

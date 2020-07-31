@@ -31,7 +31,6 @@ class Learn extends React.Component {
     console.log(this.state)
     return(
       <div>
-        <h1>Learn</h1>
         <NewsStories allNews={this.state.allNews}/>
       </div>
     )

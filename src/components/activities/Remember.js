@@ -9,7 +9,9 @@ const initialState = {
   entries: [],
   date: "",
   content: "",
-  userActivity: {}
+  userActivity: {},
+  activity: {},
+  logs: []
 }
 
 class Remember extends React.Component {
@@ -19,10 +21,33 @@ class Remember extends React.Component {
 
   componentDidMount() {
     this.setState({userActivity: this.props.userActivity})
+    this.fetchUserActivityLogs()
   }
 
   filterRememberEntries = () => {
     
+  }
+
+  fetchUserActivityLogs = () => {
+    fetch(`http://localhost:3002/api/v1/activities/${this.props.id}`)
+    .then(resp => resp.json())
+    .then(logs => {
+        console.log(logs)
+        logs !== undefined && this.setLog(logs)
+        // this.setState({logs: logs})
+    })
+    
+}
+
+  setLog = logData => {
+    console.log("before filter",logData)
+    let user_activities = logData.user_activities
+    let filter_user_activities = user_activities.filter(user_activity => user_activity.user_id === this.state.userActivity.user_id)
+
+    let logs = logData.user_activities.filter(userActivity => userActivity.user_id === this.state.userActivity.user_id)
+    console.log("after filter",logs)
+    
+    logs !== undefined && this.setState({logs: logs})
   }
 
   handleSubmit = e => {
@@ -43,10 +68,11 @@ class Remember extends React.Component {
     .then(resp => resp.json())
     .then(newPost => {
         console.log(newPost)
-        // this.setState({
-        //   entries: [...this.state.entries, newPost],
-        //   initialState
-        // })
+        this.props.addLog(newPost)
+        this.setState({
+          date: "",
+          content: ""
+        })
     })
 
   } 
@@ -57,50 +83,51 @@ class Remember extends React.Component {
     })
  }
 
-  // handleDeleteClick = id => {
-  //   console.log(id)
-  //   fetch(`http://localhost:3002/api/v1/user_activity_logs/${id}`, {
-  //     method: "DELETE"
-  //   })
-  //   this.setState({
-  //     entries: [this.state.entries.filter(entry => entry.id !== id)]
-  //   })
-  // }
+  handleDeleteClick = id => {
+    console.log(id)
+    fetch(`http://localhost:3002/api/v1/user_activity_logs/${id}`, {
+      method: "DELETE"
+    })
+    .then(() => this.props.deleteLog(id))
+  }
  
  renderUserEntries = () => {
-    return this.state.entries.map((entry, index) => <JournalEntry
+    return this.props.logs.map((entry, index) => <JournalEntry
       key={index}
       entry={entry}
+      id={entry.id}
       handleDeleteClick={this.handleDeleteClick}
     />  
     )   
   }
   
   render(){
+    console.log("remember props", this.props)
+    console.log("remember state", this.state)
     return(
       <div>
         
         <Container className="journal-container">
           <h1 className="remember-title">Journal</h1>
-          <Form onSubmit={event => this.handleSubmit(event)}>
-            <Form.Group controlId="formJournal">
-              <Form.Label>Enter The Date</Form.Label>
-                <Form.Control onChange={this.handleChange} value={this.state.date} name="date" type="date" placeholder="Today's Date"/>
+          <Form className="journal-form" onSubmit={event => this.handleSubmit(event)}>
+            <Form.Group className="journal-date-entry" controlId="formJournal">
+              <Form.Label >Enter The Date</Form.Label>
+                <Form.Control className="journal-form-input" onChange={this.handleChange} value={this.state.date} name="date" type="date" placeholder="Today's Date"/>
             </Form.Group>
             <Form.Group controlId="formJournal">
               <Form.Label>Type Your Thoughts</Form.Label>
-                <Form.Control onChange={this.handleChange} value={this.state.content} name="content" as="textarea" rows="6" type="text" placeholder="Release Your Thoughts"/>
+                <Form.Control  className="journal-form-input"  onChange={this.handleChange} value={this.state.content} name="content" as="textarea" rows="6" type="text" placeholder="Release Your Thoughts"/>
             </Form.Group>
-            <Button variant="primary" type="submit">Submit Entry</Button>
+            <Button variant="link" className="journal-submit routine-button" type="submit">Submit Entry</Button>
           </Form>
         </Container>
         <Container>
-          <Table striped bordered hover>
+          <Table striped bordered hover className="journal-entry-table">
             <thead>
               <tr>
-                <th>Date</th>
+                <th className="journal-table-header-date">Date</th>
                 <th>Entry</th>
-                <th>Delete Memory?</th>
+                <th className="journal-delete">Forget</th>
               </tr>
             </thead>
             <tbody>
