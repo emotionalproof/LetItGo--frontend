@@ -16,12 +16,12 @@ export default class RoutineContainer extends Component {
     }
 
     render() {
-        let routine = this.props.userActivities.filter(userActivity => userActivity.completed === false)
-        let sortedRoutine = routine.sort((a, b) => a.position - b.position)
+        let routine = this.props.loggedIn ? this.props.userActivities.filter(userActivity => userActivity.completed === false) : []
+        let sortedRoutine = this.props.loggedIn ? routine.sort((a, b) => a.position - b.position) : []
         return (
             <Container fluid className="inner-routine-container">
                 <Row className="inner-routine-row">
-                {sortedRoutine.map(userAct => 
+                {this.props.loggedIn && sortedRoutine.map(userAct => 
                     <RoutineCard
                         key={this.makeKey(userAct)}
                         id={userAct.id}

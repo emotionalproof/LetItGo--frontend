@@ -9,7 +9,7 @@ class Home extends Component {
     }
 
     componentDidMount() {
-        this.fetchUser()
+        this.props.loggedIn && this.fetchUser()
     }
 
     fetchUser = () => {
@@ -168,9 +168,9 @@ class Home extends Component {
         console.log(this.props)
         return (
             <>
-                <HomeNavbar />
-                {/* {!this.props.loggedIn && this.props.history.push('/welcome')} */}
-                <RoutineIndexContainer  user={this.state.user} match={this.props.match} userActivities={this.state.userActivities}/>
+                <HomeNavbar history={this.props.history} handleLogout={this.props.handleLogout}/>
+                {!this.props.loggedIn && this.props.history.push('/welcome')}
+                <RoutineIndexContainer  user={this.state.user} match={this.props.match} loggedIn={this.props.loggedIn} userActivities={this.state.userActivities}/>
             </>
         )
     }

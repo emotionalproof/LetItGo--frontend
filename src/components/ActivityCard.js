@@ -3,7 +3,7 @@ import Card from 'react-bootstrap/Card'
 import Col from 'react-bootstrap/Col'
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 import Tooltip from 'react-bootstrap/Tooltip'
-
+import Container from 'react-bootstrap/Container'
 
 
 export class ActivityCard extends Component {
@@ -30,4 +30,5 @@ export class ActivityCard extends Component {
         )
     }
 }
+
 

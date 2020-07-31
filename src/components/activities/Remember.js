@@ -53,6 +53,9 @@ class Remember extends React.Component {
   handleSubmit = e => {
     e.preventDefault()
     const {date, content} = this.state
+    if (date === "" || content === ""){
+      return 
+    }
     fetch(`http://localhost:3002/api/v1/user_activity_logs`, {
         method: 'POST',
         headers: {

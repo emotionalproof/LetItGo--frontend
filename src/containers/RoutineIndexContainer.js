@@ -28,7 +28,7 @@ class RoutineIndexContainer extends Component {
 
     fetchUserActivities = () => {
         const username = this.props.match.params.username
-        fetch(`http://localhost:3002/api/v1/user_activities/user/${username}`)
+        this.props.loggedIn && fetch(`http://localhost:3002/api/v1/user_activities/user/${username}`)
         .then(resp => resp.json())
         .then(userActivitiesData => {
             this.setState({userActivities: userActivitiesData})
@@ -136,7 +136,7 @@ class RoutineIndexContainer extends Component {
         return (
             <>
                 <div className="horizontal-bar"/>
-                <RoutineSelectContainer addToRoutine={this.addToRoutine}/>
+                <RoutineSelectContainer loggedIn={this.props.loggedIn} addToRoutine={this.addToRoutine}/>
                 <div className="horizontal-bar"/>
                 <Container fluid className="routine-container" >
                     <Row className="routine-row">
@@ -145,12 +145,12 @@ class RoutineIndexContainer extends Component {
                         <Col md={3} className="button-column"><Button variant="link" onClick={this.startRoutine} className="start-routine-button">Start Routine</Button></Col>
                         
                         <Col md={6} className="routine-item-column">
-                            <RoutineContainer displayRoutine={!this.state.routineStart} removeFromRoutine={this.removeFromRoutine} userActivities={this.state.userActivities}/>
+                            <RoutineContainer loggedIn={this.props.loggedIn} displayRoutine={!this.state.routineStart} removeFromRoutine={this.removeFromRoutine} userActivities={this.state.userActivities}/>
                         </Col>
                     </Row>
                 </Container>
                 <div className="horizontal-bar"/> 
-                <ActivityShowContainer user={this.props.user} routineStart={this.state.routineStart} nextActivity={this.nextActivity} routine={this.state.routine}/>
+                <ActivityShowContainer loggedIn={this.props.loggedIn} user={this.props.user} routineStart={this.state.routineStart} nextActivity={this.nextActivity} routine={this.state.routine}/>
             </>
         )
     }

@@ -13,25 +13,19 @@ const RoutineSelectContainer = props => {
 
     return (
         <Container  fluid="lg" className="home-top-container routine-select-container">
-            
-               
-                    
-                        <Row className="routine-select-title"><Col><h2 id="activity-select-title">Moments</h2></Col></Row>
-                        <Row className="routine-select-row">  
-                            <Col sm={1}></Col>
-                            {activities.filter(activity => activity.name !== "Select").map(activity => 
-                                <ActivityCard 
-                                    name={activity.name}
-                                    key={activity.name}
-                                    id={activity.id}
-                                    addToRoutine={props.addToRoutine}
-                                />
-                            )}
-                            <Col sm={1}></Col>
-                        </Row> 
-                   
-                
-            
+            <Row className="routine-select-title"><Col><h2 id="activity-select-title">Moments</h2></Col></Row>
+            <Row className="routine-select-row">  
+                <Col sm={1}></Col>
+                {props.loggedIn && activities.filter(activity => activity.name !== "Select").map(activity => 
+                    <ActivityCard 
+                        name={activity.name}
+                        key={activity.name}
+                        id={activity.id}
+                        addToRoutine={props.addToRoutine}
+                    />
+                )}
+                <Col sm={1}></Col>
+            </Row> 
         </Container>
     )
 }

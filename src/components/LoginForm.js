@@ -31,10 +31,12 @@ class LoginForm extends Component {
     }
 
     checkUsername = () => {
-        if (!this.state.user){
-            alert("Username Not Found")
-        } else if (this.state.user.password !== this.state.password){
-            alert("Password Does Not Match Records")
+        if (this.state.username === "" || this.state.password === ""){
+            alert("Please fill out all provided fields.")
+        } else if (!this.state.user){
+            alert("Username Not Found.")
+        }else if (this.state.user.password !== this.state.password){
+            alert("Password Does Not Match Records.")
         } else {
             this.setState({formReset})
             this.props.handleLogin(this.state.user)

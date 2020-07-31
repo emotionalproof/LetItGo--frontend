@@ -100,6 +100,7 @@ body {
   width: 4vw;
 }
 
+
 .navbar-content {
   font-size: 5vw;
   line-height: 4vw;
@@ -109,6 +110,28 @@ body {
   justify-content: flex-start;
   background-image: linear-gradient(to right, #434343 0%, black 100%);
 }
+
+/* .navbar-buffer.col-lg-7 {
+  width: 6vw;
+} */
+
+
+
+.logout {
+  text-decoration: none;
+  color: white;
+  border-color:white;
+  border-radius: 90px;
+  height: 80px;
+  width: 80px
+}
+
+.logout:link, .logout:hover, .logout:active, .logout:visited {
+  text-decoration: none;
+  color: white;
+  border-color:white
+}
+
 
 #activity-select-title {
   font-size: 5vw
@@ -273,7 +296,7 @@ body {
 }
 
 .routine-button {
-  border-radius: 15px;
+  border-radius: 90px;
   width: 7vw;
   height: 7vw;
   border-style: none;

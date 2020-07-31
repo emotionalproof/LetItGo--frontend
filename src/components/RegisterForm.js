@@ -38,10 +38,14 @@ class RegisterForm extends Component {
 
     verifyInput = fetchResponse => {
         if (!!fetchResponse) {
-            alert("I'm sorry, that username is taken")
-        } else if (this.state.password !== this.state.passwordConfirmation) {
+            alert("I'm sorry, that username is taken.")
+        } else if (this.state.firstName === "Grant" && this.state.lastName.includes("Y")) {
+            alert("GRANT YOSHITSU IS NOT ALLOWED IN THIS WEBSITE!!!")
+        }else if (this.state.password !== this.state.passwordConfirmation) {
             alert("The Passwords you have provided do not match. Please re-enter.")
-        } else {
+        } else if (this.state.firstName === "" || this.state.lastName === "" || this.state.username === "" || this.state.password === "" ) {
+            alert("Please fill out all provided fields.")
+        }else {
             this.createUser()
         }
     }
@@ -55,7 +59,11 @@ class RegisterForm extends Component {
                 Accept: "application/json"
             },
             body: JSON.stringify({
-                firstName, lastName, username, password, passwordConfirmation
+                first_name: firstName, 
+                last_name: lastName, 
+                username: username, 
+                password: password, 
+                password_confirmation: passwordConfirmation
             })
         })
         .then(resp => resp.json())
